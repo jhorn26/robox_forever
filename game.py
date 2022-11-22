@@ -15,7 +15,7 @@ top_left_y = s_height - play_height - 200
 
 class Piece(object): 
 
-    def _init_(self, column, row, color):
+    def __init__(self, column, row, color):
         self.x = column 
         self.y = row
         self.color = color
