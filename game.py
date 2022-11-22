@@ -21,8 +21,13 @@ class Piece(object):
         self.color = color
 
 
-def create_grid():
+def create_grid(locked_positions={}):
     grid = [[(0,0,0) for x in range(10)] for x in range(10)]
+
+    for i in range(len(grid)):
+        for j in range(len(grid[i])):
+            if (j,i) in locked_positions:
+                grid[i][j] = (100, 100, 100)
 
     return grid
 
@@ -52,12 +57,13 @@ def main():
     global grid, r, g, b
 
     robot = Piece(3, 3, (255, 0, 0))
+    locked_positions = [(4,5)]
     grid = create_grid()
     run = True
 
     while run:
         
-        grid = create_grid()
+        grid = create_grid(locked_positions)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -108,4 +114,4 @@ r = 100
 g = 100
 b = 100
 
-main()
+main()      
