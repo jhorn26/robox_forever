@@ -13,12 +13,14 @@ play_height = 300
 top_left_x = (s_width - play_width) // 2
 top_left_y = s_height - play_height - 200
 
+
 class Piece(object): 
 
     def __init__(self, column, row, color):
         self.x = column 
         self.y = row
         self.color = color
+        self.rotation = 0
 
 
 def create_grid(locked_positions={}, objects_positions={}):
@@ -68,12 +70,12 @@ def draw_window(surface, r, g, b):
 
 
 def main():
-    global grid, r, g, b
+    global grid, r, g, b, color
 
     robot = Piece(3, 3, (255, 0, 0))
     boxes_positions = [(1,6), (2,7), (6,8)]
     goal_positions = [(5,6), (3,5), (9,9)]
-    locked_positions = [(4,5)]
+    locked_positions = [(4,5)] 
     boxes = [Piece(boxes_positions[i][0], boxes_positions[i][1], (160, 82, 45)) for i in range(len(boxes_positions))]
     objects_positions = [(box.x, box.y) for box in boxes]
     grid = create_grid(locked_positions, objects_positions)
@@ -96,7 +98,7 @@ def main():
                     pygame.display.quit()
                     quit()
                 
-                if event.key == pygame.K_LEFT:
+                elif event.key == pygame.K_LEFT:
                     robot.x -= 1
                     if not push_space(robot, grid):
                         robot.x += 1
@@ -160,13 +162,58 @@ def main():
         
         draw_window(win, r, g, b)
         
+        done = all([grid[pos[1]][pos[0]] == (160, 82, 45) for pos in goal_positions])
+        
         pygame.display.update() 
+        
+        if done:
+            run = False 
+    
+    color = (255, 255, 0)
+    
 
+def main_menu():
+    global color
 
+    run = True
+    color = (0, 0, 160)
+    
+    while run:
+        win.fill(color)
+        if color == (0, 0, 160):
+           font = pygame.font.SysFont('Times New Roman', 100)
+           label = font.render('ROBLOX', True, (255,255,255))
+           win.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), s_height / 2 - 150))
+           label = font.render('FOREVER', True, (255,255,255))
+           win.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), s_height / 2 + 30)) 
+        
+        
+        elif color == (255, 255, 0):
+           font = pygame.font.SysFont('Times New Roman', 60)
+           label = font.render('CONGRATULATIONS!!!', True, (255,255,255))
+           win.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), s_height / 2 - 50)) 
+        
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    run = False
+                    pygame.display.quit()
+                    quit()
+            
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:   
+                    main()
+        
+        pygame.display.update()
+
+                
 win = pygame.display.set_mode((s_width, s_height))
 
 r = 100
 g = 100
 b = 100
 
-main()      
+main_menu()
