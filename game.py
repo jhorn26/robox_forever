@@ -35,7 +35,7 @@ def create_grid(locked_positions={}, objects_positions={}):
 
 
 def valid_space(object, grid):    
-    accepted_positions = [[(j, i) for j in range(10) if grid[i][j] == (0,0,0)] for i in range(10)]
+    accepted_positions = [[(j, i) for j in range(10) if grid[i][j] == (0,0,0) or grid[i][j] == (255, 192, 203)] for i in range(10)]
     accepted_positions = [j for sub in accepted_positions for j in sub]
     formatted = (object.x, object.y)
 
@@ -48,7 +48,7 @@ def valid_space(object, grid):
 
 
 def push_space(shape, grid):    
-    accepted_positions = [[(j, i) for j in range(10) if grid[i][j] == (0,0,0) or grid[i][j] == (160,82,45)] for i in range(10)]
+    accepted_positions = [[(j, i) for j in range(10) if grid[i][j] == (0,0,0) or grid[i][j] == (160,82,45) or grid[i][j] == (255, 192, 203)] for i in range(10)]
     accepted_positions = [j for sub in accepted_positions for j in sub]
     formatted = (shape.x, shape.y)
 
@@ -72,6 +72,7 @@ def main():
 
     robot = Piece(3, 3, (255, 0, 0))
     boxes_positions = [(1,6), (2,7), (6,8)]
+    goal_positions = [(5,6), (3,5), (9,9)]
     locked_positions = [(4,5)]
     boxes = [Piece(boxes_positions[i][0], boxes_positions[i][1], (160, 82, 45)) for i in range(len(boxes_positions))]
     objects_positions = [(box.x, box.y) for box in boxes]
@@ -94,7 +95,7 @@ def main():
                     run = False
                     pygame.display.quit()
                     quit()
-                             
+                
                 if event.key == pygame.K_LEFT:
                     robot.x -= 1
                     if not push_space(robot, grid):
@@ -116,7 +117,7 @@ def main():
                             if not valid_space(box, grid):
                                 box.x -= 1
                                 robot.x -= 1
-               
+
                 elif event.key == pygame.K_UP:
                     robot.y -= 1
                     if not push_space(robot, grid):
@@ -127,7 +128,7 @@ def main():
                             if not valid_space(box, grid):
                                 box.y += 1
                                 robot.y += 1
-                    
+
                 elif event.key == pygame.K_DOWN:
                     robot.y += 1
                     if not push_space(robot, grid):
@@ -138,24 +139,28 @@ def main():
                             if not valid_space(box, grid):
                                 box.y -= 1
                                 robot.y -= 1
-
+                
                 elif event.key == pygame.K_r:
                     main()
-                                  
+
+        
+        for goal in goal_positions:
+            x, y = goal[0], goal[1]
+            if y > -1:
+                grid[y][x] = (255, 192, 203)
         
         x, y = robot.x, robot.y
         if y > -1:
             grid[y][x] = robot.color
-
+        
         for box in boxes:
             x, y = box.x, box.y
             if y > -1:
                 grid[y][x] = box.color
-
-        draw_window(win, r, g, b)
-               
-        pygame.display.update() 
         
+        draw_window(win, r, g, b)
+        
+        pygame.display.update() 
 
 
 win = pygame.display.set_mode((s_width, s_height))
