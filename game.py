@@ -29,9 +29,9 @@ def create_grid(locked_positions={}, objects_positions={}):
     for i in range(len(grid)):
         for j in range(len(grid[i])):
             if (j,i) in locked_positions:
-                grid[i][j] = (100, 100, 100)
+                grid[i][j] = (100, 100, 100) # type: ignore
             if (j,i) in objects_positions:
-                grid[i][j] = (160, 82, 45)
+                grid[i][j] = (160, 82, 45) # type: ignore
 
     return grid
 
@@ -149,16 +149,16 @@ def main():
         for goal in goal_positions:
             x, y = goal[0], goal[1]
             if y > -1:
-                grid[y][x] = (255, 192, 203)
+                grid[y][x] = (255, 192, 203) # type: ignore
         
         x, y = robot.x, robot.y
         if y > -1:
-            grid[y][x] = robot.color
+            grid[y][x] = robot.color # type: ignore
         
         for box in boxes:
             x, y = box.x, box.y
             if y > -1:
-                grid[y][x] = box.color
+                grid[y][x] = box.color # type: ignore
         
         draw_window(win, r, g, b)
         
