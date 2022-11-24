@@ -8,12 +8,16 @@ pygame.font.init()
 
 s_width = 800
 s_height = 700
-play_width = 300 
-play_height = 300
+play_width = 210
+play_height = 210
 
 
-top_left_x = (s_width - play_width) // 2
-top_left_y = s_height - play_height - 200
+
+top_left_x = int((s_width - play_width) // 2)
+top_left_y = int((s_height - play_height) // 2)
+
+size_grid_x = 7
+size_grid_y = 7
 
 
 class Piece(object): 
@@ -26,18 +30,18 @@ class Piece(object):
 
 
 def create_grid(locked_positions=[], objects_positions=[]):
-    grid = [[(0,0,0) for x in range(10)] for x in range(10)]
+    grid = [[(100, 100, 100) for x in range(size_grid_x)] for x in range(size_grid_y)]
 
     for i in range(len(grid)):
         for j in range(len(grid[i])):
             if (j,i) in locked_positions:
-                grid[i][j] = (100, 100, 100) # type: ignore
+                grid[i][j] = (0, 0, 0) # type: ignore
             if (j,i) in objects_positions:
                 grid[i][j] = (160, 82, 45) # type: ignore
     return grid
 
 def valid_space(object, grid):    
-    accepted_positions = [[(j, i) for j in range(10) if grid[i][j] == (0,0,0) or grid[i][j] == (255, 192, 203)] for i in range(10)]
+    accepted_positions = [[(j, i) for j in range(size_grid_x) if grid[i][j] == (0,0,0) or grid[i][j] == (255, 192, 203)] for i in range(size_grid_y)]
     accepted_positions = [j for sub in accepted_positions for j in sub]
     formatted = (object.x, object.y)
 
@@ -49,7 +53,7 @@ def valid_space(object, grid):
     return True
 
 def push_space(shape, grid):    
-    accepted_positions = [[(j, i) for j in range(10) if grid[i][j] == (0,0,0) or grid[i][j] == (160,82,45) or grid[i][j] == (255, 192, 203)] for i in range(10)]
+    accepted_positions = [[(j, i) for j in range(size_grid_x) if grid[i][j] == (0,0,0) or grid[i][j] == (160,82,45) or grid[i][j] == (255, 192, 203)] for i in range(size_grid_y)]
     accepted_positions = [j for sub in accepted_positions for j in sub]
     formatted = (shape.x, shape.y)
 
@@ -189,7 +193,7 @@ def main():
         font = pygame.font.SysFont('Times New Roman', 20)
         text = font.render(f'MOVIMENTOS: {movimentos}', True, (255,255,255))
         textRect = text.get_rect()
-        textRect.center = (100,300)
+        textRect.center = (100, top_left_y)
         win.blit(text, textRect)
 
         counting_time = pygame.time.get_ticks() - start_time
@@ -197,7 +201,7 @@ def main():
 
         counting_text = font.render(f'TIMER: {counting_seconds}', True, (255,255,255))
         counting_rect = counting_text.get_rect()
-        counting_rect.center = (650,300)
+        counting_rect.center = (650, top_left_y)
         
         win.blit(counting_text, counting_rect)
         
@@ -223,9 +227,9 @@ def main_menu():
         
         font = pygame.font.SysFont('Times New Roman', 100)
         label = font.render('ROBLOX', True, (255,255,255))
-        win.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), s_height / 2 - 150))
+        win.blit(label, (s_width / 2 - (label.get_width() / 2), s_height / 2 - 150))
         label = font.render('FOREVER', True, (255,255,255))
-        win.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), s_height / 2 + 30)) 
+        win.blit(label, (s_width / 2 - (label.get_width() / 2), s_height / 2 + 30)) 
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -247,7 +251,7 @@ def main_menu():
         pygame.display.update()
 
 def main_opt():
-    global color, robot_position, boxes_positions, goal_positions, locked_positions, level
+    global color, robot_position, boxes_positions, goal_positions, locked_positions, level, rect_level1, rect_level2, rect_level3
     with open('arquivo.txt', 'r') as arq:
         file = arq.readlines()
 
@@ -260,23 +264,74 @@ def main_opt():
         if color == (255, 255, 0):
            font = pygame.font.SysFont('Times New Roman', 60)
            label = font.render('WELL', True, (255,255,255))
-           win.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), s_height / 2 - 150)) 
+           win.blit(label, (s_width / 2 - (label.get_width() / 2), s_height / 2 - 150)) 
            label = font.render('CONGRATULATIONS', True, (255,255,255))
-           win.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), s_height / 2 - 50))
+           win.blit(label, (s_width / 2 - (label.get_width() / 2), s_height / 2 - 50))
            label = font.render('GENIUS!!!', True, (255,255,255))
-           win.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), s_height / 2 + 50))  
+           win.blit(label, (s_width / 2 - (label.get_width() / 2), s_height / 2 + 50))  
 
         elif color == (0, 0, 160):
             font = pygame.font.SysFont('Times New Roman', 60)
-            label = font.render('PRESS 1 TO SELECT LEVEL 1', True, (255,255,255))
-            win.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), s_height / 2 - 150))
-            label = font.render('PRESS 2 TO SELECT LEVEL 2', True, (255,255,255))
-            win.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), s_height / 2 + 50))
+            label = font.render('SELECT LEVEL', True, (255,255,255))
+            win.blit(label, (s_width / 2 - (label.get_width() / 2), s_height / 6 - 60))
+            font = pygame.font.SysFont('Times New Roman', 40)
+            label = font.render('LEVEL 1', True, (255,255,255))
+            win.blit(label, (s_width / 4 - (label.get_width() / 2), (3*s_height) / 8 - 100))
+            label = font.render('LEVEL 2', True, (255,255,255))
+            win.blit(label, ((3*s_width) / 4 - (label.get_width() / 2), (3*s_height) / 8 - 100))
+            label = font.render('LEVEL 3', True, (255,255,255))
+            win.blit(label, (s_width / 2 - (label.get_width() / 2), (17*s_height) / 24 - 100))
+            
+            rect_level1 = pygame.Rect(s_width / 4 - 50, (5*s_height) / 12 - 60, 100, 100)
+            pygame.draw.rect( win, (0,0,0), rect_level1)
+            level1 = pygame.image.load('level1.png')
+            level1 = pygame.transform.scale(level1, (100, 100))
+            win.blit(level1, (s_width / 4 - 50, (5*s_height) / 12 - 60))
+
+            rect_level2 = pygame.Rect((3*s_width) / 4 - 50, (5*s_height) / 12 - 60, 100, 100)
+            pygame.draw.rect( win, (0,0,0), rect_level2)
+            level2 = pygame.image.load('level2.png')
+            level2 = pygame.transform.scale(level2, (100, 100))
+            win.blit(level2, ((3*s_width) / 4 - 50, (5*s_height) / 12 - 60))
+
+            rect_level3 = pygame.Rect(s_width / 2 - 50, (3*s_height) / 4 - 60, 100, 100)
+            pygame.draw.rect( win, (0,0,0), rect_level3)
+            level3 = pygame.image.load('level3.png')
+            level3 = pygame.transform.scale(level3, (100, 100))
+            win.blit(level3, (s_width / 2 - 50, (3*s_height) / 4 - 60))
            
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+                pygame.display.quit()
+                quit()
+            
+            elif event.type == pygame.MOUSEBUTTONUP:
+                mouse_position = pygame.mouse.get_pos() 
+                if rect_level1.collidepoint(mouse_position) and color == (0, 0, 160):
+                    level = 0 
+                    robot_position = lista_dict[level]['robot_position']
+                    boxes_positions = lista_dict[level]['boxes_positions']
+                    goal_positions = lista_dict[level]['goal_positions']
+                    locked_positions = lista_dict[level]['locked_positions']
+                    main()
+                
+                if rect_level2.collidepoint(mouse_position) and color == (0, 0, 160):
+                    level = 1 
+                    robot_position = lista_dict[level]['robot_position']
+                    boxes_positions = lista_dict[level]['boxes_positions']
+                    goal_positions = lista_dict[level]['goal_positions']
+                    locked_positions = lista_dict[level]['locked_positions']
+                    main()
+
+                if rect_level3.collidepoint(mouse_position) and color == (0, 0, 160):
+                    level = 2 
+                    robot_position = lista_dict[level]['robot_position']
+                    boxes_positions = lista_dict[level]['boxes_positions']
+                    goal_positions = lista_dict[level]['goal_positions']
+                    locked_positions = lista_dict[level]['locked_positions']
+                    main()
 
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_q:
@@ -294,6 +349,14 @@ def main_opt():
 
                 elif event.key == pygame.K_2:  
                     level = 1
+                    robot_position = lista_dict[level]['robot_position']
+                    boxes_positions = lista_dict[level]['boxes_positions']
+                    goal_positions = lista_dict[level]['goal_positions']
+                    locked_positions = lista_dict[level]['locked_positions']
+                    main()
+
+                elif event.key == pygame.K_3:  
+                    level = 2
                     robot_position = lista_dict[level]['robot_position']
                     boxes_positions = lista_dict[level]['boxes_positions']
                     goal_positions = lista_dict[level]['goal_positions']
@@ -325,6 +388,7 @@ def main_opt():
         pygame.display.update()
 
 win = pygame.display.set_mode((s_width, s_height))
+pygame.display.set_caption("Sokoban")
 
 r = 100
 g = 100
