@@ -1,4 +1,5 @@
 import pygame
+import ast
 
 
 pygame.init()
@@ -24,7 +25,7 @@ class Piece(object):
         self.rotation = 0
 
 
-def create_grid(locked_positions={}, objects_positions={}):
+def create_grid(locked_positions=[], objects_positions=[]):
     grid = [[(0,0,0) for x in range(10)] for x in range(10)]
 
     for i in range(len(grid)):
@@ -68,12 +69,9 @@ def draw_window(surface, r, g, b):
 
 
 def main():
-    global grid, r, g, b, color, movimentos
+    global grid, r, g, b, color, movimentos, robot_position, boxes_positions, goal_positions, locked_positions
 
-    robot = Piece(3, 3, (255, 0, 0))
-    boxes_positions = [(1,6), (2,7), (6,8)]
-    goal_positions = [(5,6), (3,5), (9,9)]
-    locked_positions = [(4,5)] 
+    robot = Piece(robot_position[0][0], robot_position[0][1], (255, 0, 0))
     boxes = [Piece(boxes_positions[i][0], boxes_positions[i][1], (160, 82, 45)) for i in range(len(boxes_positions))]
     objects_positions = [(box.x, box.y) for box in boxes]
     grid = create_grid(locked_positions, objects_positions)
@@ -102,6 +100,12 @@ def main():
                 
                 elif event.key == pygame.K_r:
                     main()
+                    run = False
+                
+                elif event.key == pygame.K_ESCAPE:
+                    color = (0, 0, 160)
+                    main_opt()
+                    run = False
 
         comandos =  pygame.key.get_pressed()
            
@@ -172,9 +176,15 @@ def main():
             if y > -1:
                 grid[y][x] = box.color # type: ignore
         
+        for box in boxes:
+            if (box.x, box.y) in goal_positions:
+                grid[box.y][box.x] = (139, 0, 0) # type: ignore
+
+                
         draw_window(win, r, g, b)
         
-        done = all([grid[pos[1]][pos[0]] == (160, 82, 45) for pos in goal_positions])
+
+        done = all([grid[pos[1]][pos[0]] == (139, 0, 0) for pos in goal_positions])
         
         font = pygame.font.SysFont('Times New Roman', 20)
         text = font.render(f'MOVIMENTOS: {movimentos}', True, (255,255,255))
@@ -184,17 +194,15 @@ def main():
 
         counting_time = pygame.time.get_ticks() - start_time
         counting_seconds = str( round((counting_time%60000)/1000) ).zfill(1)
-        
-        counting_string = "%s" % (counting_seconds)
 
-        counting_text = font.render(f'TIMER: {counting_string}', True, (255,255,255))
+        counting_text = font.render(f'TIMER: {counting_seconds}', True, (255,255,255))
         counting_rect = counting_text.get_rect()
         counting_rect.center = (650,300)
         
         win.blit(counting_text, counting_rect)
         
         pygame.display.flip()
-        clock.tick(10)
+        clock.tick(7)
         
         if done:
             run = False
@@ -212,35 +220,109 @@ def main_menu():
     
     while run:
         win.fill(color)
-        if color == (0, 0, 160):
-           font = pygame.font.SysFont('Times New Roman', 100)
-           label = font.render('ROBLOX', True, (255,255,255))
-           win.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), s_height / 2 - 150))
-           label = font.render('FOREVER', True, (255,255,255))
-           win.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), s_height / 2 + 30)) 
         
-        
-        elif color == (255, 255, 0):
-           font = pygame.font.SysFont('Times New Roman', 60)
-           label = font.render('CONGRATULATIONS!!!', True, (255,255,255))
-           win.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), s_height / 2 - 50)) 
+        font = pygame.font.SysFont('Times New Roman', 100)
+        label = font.render('ROBLOX', True, (255,255,255))
+        win.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), s_height / 2 - 150))
+        label = font.render('FOREVER', True, (255,255,255))
+        win.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), s_height / 2 + 30)) 
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
 
-            if event.type == pygame.KEYDOWN:
+            elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_q:
                     run = False
                     pygame.display.quit()
                     quit()
             
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE:   
-                    main()
+            
+                elif event.key == pygame.K_SPACE:   
+                    main_opt()
+            
+                elif event.key == pygame.K_r:
+                    main_opt()
         
         pygame.display.update()
 
+def main_opt():
+    global color, robot_position, boxes_positions, goal_positions, locked_positions, level
+    with open('arquivo.txt', 'r') as arq:
+        file = arq.readlines()
+
+    lista_dict = [ast.literal_eval(line) for line in file]
+    level = None
+    run = True
+
+    while run:
+        win.fill(color)
+        if color == (255, 255, 0):
+           font = pygame.font.SysFont('Times New Roman', 60)
+           label = font.render('WELL', True, (255,255,255))
+           win.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), s_height / 2 - 150)) 
+           label = font.render('CONGRATULATIONS', True, (255,255,255))
+           win.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), s_height / 2 - 50))
+           label = font.render('GENIUS!!!', True, (255,255,255))
+           win.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), s_height / 2 + 50))  
+
+        elif color == (0, 0, 160):
+            font = pygame.font.SysFont('Times New Roman', 60)
+            label = font.render('PRESS 1 TO SELECT LEVEL 1', True, (255,255,255))
+            win.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), s_height / 2 - 150))
+            label = font.render('PRESS 2 TO SELECT LEVEL 2', True, (255,255,255))
+            win.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), s_height / 2 + 50))
+           
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    run = False
+                    pygame.display.quit()
+                    quit()
+            
+                elif event.key == pygame.K_1:  
+                    level = 0 
+                    robot_position = lista_dict[level]['robot_position']
+                    boxes_positions = lista_dict[level]['boxes_positions']
+                    goal_positions = lista_dict[level]['goal_positions']
+                    locked_positions = lista_dict[level]['locked_positions']
+                    main()
+
+                elif event.key == pygame.K_2:  
+                    level = 1
+                    robot_position = lista_dict[level]['robot_position']
+                    boxes_positions = lista_dict[level]['boxes_positions']
+                    goal_positions = lista_dict[level]['goal_positions']
+                    locked_positions = lista_dict[level]['locked_positions']
+                    main()
+                
+                elif event.key == pygame.K_r:
+                    main()
+
+                elif event.key == pygame.K_SPACE:
+                    if level == len(lista_dict)-1:
+                        color = (0, 0, 160)
+                        main_opt()
+                        run = False
+                    elif isinstance(level, int):
+                        level += 1 
+                        robot_position = lista_dict[level]['robot_position']
+                        boxes_positions = lista_dict[level]['boxes_positions']
+                        goal_positions = lista_dict[level]['goal_positions']
+                        locked_positions = lista_dict[level]['locked_positions']
+                        main()
+                
+                elif event.key == pygame.K_ESCAPE:
+                    color = (0, 0, 160)
+                    main_opt()
+                    run = False
+
+
+        pygame.display.update()
 
 win = pygame.display.set_mode((s_width, s_height))
 
