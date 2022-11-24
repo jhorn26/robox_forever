@@ -68,7 +68,7 @@ def draw_window(surface, r, g, b):
 
 
 def main():
-    global grid, r, g, b, color
+    global grid, r, g, b, color, movimentos
 
     robot = Piece(3, 3, (255, 0, 0))
     boxes_positions = [(1,6), (2,7), (6,8)]
@@ -78,6 +78,9 @@ def main():
     objects_positions = [(box.x, box.y) for box in boxes]
     grid = create_grid(locked_positions, objects_positions)
     clock = pygame.time.Clock()
+    movimentos = 0
+    start_time = pygame.time.get_ticks() 
+
     run = True
 
     while run:
@@ -109,9 +112,11 @@ def main():
             for box in boxes:
                 if box.x==robot.x and box.y==robot.y:
                     box.y -= 1
+                    movimentos += 1
                     if not valid_space(box, grid):
                         box.y += 1
                         robot.y += 1
+                        movimentos -= 1
 
         if comandos[pygame.K_DOWN] or comandos[pygame.K_s]:
             robot.y += 1
@@ -120,9 +125,11 @@ def main():
             for box in boxes:
                 if box.x==robot.x and box.y==robot.y:
                     box.y += 1
+                    movimentos += 1
                     if not valid_space(box, grid):
                         box.y -= 1
                         robot.y -= 1
+                        movimentos -= 1
 
         if comandos[pygame.K_LEFT] or comandos[pygame.K_a]:
             robot.x -= 1
@@ -131,9 +138,11 @@ def main():
             for box in boxes:
                 if box.x==robot.x and box.y==robot.y:
                     box.x -= 1
+                    movimentos += 1
                     if not valid_space(box, grid):
                         box.x += 1
                         robot.x += 1
+                        movimentos -= 1
 
         if comandos[pygame.K_RIGHT] or comandos[pygame.K_d]:
             robot.x += 1
@@ -142,9 +151,11 @@ def main():
             for box in boxes:
                 if box.x==robot.x and box.y==robot.y:
                     box.x += 1
+                    movimentos += 1
                     if not valid_space(box, grid):
                         box.x -= 1
                         robot.x -= 1
+                        movimentos -= 1
 
         
         for goal in goal_positions:
@@ -164,6 +175,23 @@ def main():
         draw_window(win, r, g, b)
         
         done = all([grid[pos[1]][pos[0]] == (160, 82, 45) for pos in goal_positions])
+        
+        font = pygame.font.SysFont('Times New Roman', 20)
+        text = font.render(f'MOVIMENTOS: {movimentos}', True, (255,255,255))
+        textRect = text.get_rect()
+        textRect.center = (100,300)
+        win.blit(text, textRect)
+
+        counting_time = pygame.time.get_ticks() - start_time
+        counting_seconds = str( round((counting_time%60000)/1000) ).zfill(1)
+        
+        counting_string = "%s" % (counting_seconds)
+
+        counting_text = font.render(f'TIMER: {counting_string}', True, (255,255,255))
+        counting_rect = counting_text.get_rect()
+        counting_rect.center = (650,300)
+        
+        win.blit(counting_text, counting_rect)
         
         pygame.display.flip()
         clock.tick(10)
@@ -213,7 +241,7 @@ def main_menu():
         
         pygame.display.update()
 
-                
+
 win = pygame.display.set_mode((s_width, s_height))
 
 r = 100
