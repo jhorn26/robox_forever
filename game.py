@@ -252,7 +252,7 @@ def main_menu():
 
 def main_opt():
     global color, robot_position, boxes_positions, goal_positions, locked_positions, level, rect_level1, rect_level2, rect_level3
-    with open('arquivo.txt', 'r') as arq:
+    with open('levels.txt', 'r') as arq:
         file = arq.readlines()
 
     lista_dict = [ast.literal_eval(line) for line in file]
@@ -284,19 +284,19 @@ def main_opt():
             
             rect_level1 = pygame.Rect(s_width / 4 - 50, (5*s_height) / 12 - 60, 100, 100)
             pygame.draw.rect( win, (0,0,0), rect_level1)
-            level1 = pygame.image.load('level1.png')
+            level1 = pygame.image.load('images\\level1.png')
             level1 = pygame.transform.scale(level1, (100, 100))
             win.blit(level1, (s_width / 4 - 50, (5*s_height) / 12 - 60))
 
             rect_level2 = pygame.Rect((3*s_width) / 4 - 50, (5*s_height) / 12 - 60, 100, 100)
             pygame.draw.rect( win, (0,0,0), rect_level2)
-            level2 = pygame.image.load('level2.png')
+            level2 = pygame.image.load('images\\level2.png')
             level2 = pygame.transform.scale(level2, (100, 100))
             win.blit(level2, ((3*s_width) / 4 - 50, (5*s_height) / 12 - 60))
 
             rect_level3 = pygame.Rect(s_width / 2 - 50, (3*s_height) / 4 - 60, 100, 100)
             pygame.draw.rect( win, (0,0,0), rect_level3)
-            level3 = pygame.image.load('level3.png')
+            level3 = pygame.image.load('images\\level3.png')
             level3 = pygame.transform.scale(level3, (100, 100))
             win.blit(level3, (s_width / 2 - 50, (3*s_height) / 4 - 60))
            
