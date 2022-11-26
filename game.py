@@ -318,8 +318,6 @@ def main_opt():
                     locked_positions = lista_dict[level]['locked_positions']
                     dimension = lista_dict[level]['dimension']
                     print(robot_position)
-                    #print(dimension)
-                    #print(dimension)
                     print(dimension)
                     main()
                 
