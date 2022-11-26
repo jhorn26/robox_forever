@@ -16,8 +16,8 @@ play_height = 210
 top_left_x = int((s_width - play_width) // 2)
 top_left_y = int((s_height - play_height) // 2)
 
-size_grid_x = 7
-size_grid_y = 7
+size_grid_x = 10
+size_grid_y = 10
 
 
 class Piece(object): 
@@ -64,12 +64,12 @@ def push_space(shape, grid):
     return True
 
 
-def draw_window(surface, r, g, b, dimension):
+def draw_window(surface, r, g, b):
     surface.fill((r,g,b))
 
     for i in range(len(grid)):
         for j in range(len(grid[i])):
-            pygame.draw.rect(surface, grid[i][j], (int((s_width - dimension[0]) // 2) + j* 30, int((s_height - dimension[1]) // 2) * 30, 30, 30), 0)
+            pygame.draw.rect(surface, grid[i][j], (int((s_width - 7*30) // 2) + j* 30, int((s_height - 7*30) // 2) + i * 30, 30, 30), 0)
 
 
 def main():
@@ -185,7 +185,7 @@ def main():
                 grid[box.y][box.x] = (139, 0, 0) # type: ignore
 
                 
-        draw_window(win, r, g, b, dimension)
+        draw_window(win, r, g, b)
         
 
         done = all([grid[pos[1]][pos[0]] == (139, 0, 0) for pos in goal_positions])
@@ -216,7 +216,7 @@ def main():
     
         
 
-def front_page():
+def main_menu():
     global color
 
     run = True
@@ -317,6 +317,10 @@ def main_opt():
                     goal_positions = lista_dict[level]['goal_positions']
                     locked_positions = lista_dict[level]['locked_positions']
                     dimension = lista_dict[level]['dimension']
+                    print(robot_position)
+                    #print(dimension)
+                    #print(dimension)
+                    print(dimension)
                     main()
                 
                 if rect_level2.collidepoint(mouse_position) and color == (0, 0, 160):
@@ -402,4 +406,4 @@ r = 100
 g = 100
 b = 100
 
-front_page()
+main_menu()
