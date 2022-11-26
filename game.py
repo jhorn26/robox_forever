@@ -64,12 +64,12 @@ def push_space(shape, grid):
     return True
 
 
-def draw_window(surface, r, g, b):
+def draw_window(surface, r, g, b, dimension):
     surface.fill((r,g,b))
 
     for i in range(len(grid)):
         for j in range(len(grid[i])):
-            pygame.draw.rect(surface, grid[i][j], (int((s_width - 7*30) // 2) + j* 30, int((s_height - 7*30) // 2) + i * 30, 30, 30), 0)
+            pygame.draw.rect(surface, grid[i][j], (int((s_width - dimension[0][0]*30) // 2) + j* 30, int((s_height - dimension[0][1]*30) // 2) + i * 30, 30, 30), 0)
 
 
 def main():
@@ -185,7 +185,7 @@ def main():
                 grid[box.y][box.x] = (139, 0, 0) # type: ignore
 
                 
-        draw_window(win, r, g, b)
+        draw_window(win, r, g, b, dimension)
         
 
         done = all([grid[pos[1]][pos[0]] == (139, 0, 0) for pos in goal_positions])
@@ -318,8 +318,6 @@ def main_opt():
                     locked_positions = lista_dict[level]['locked_positions']
                     dimension = lista_dict[level]['dimension']
                     print(robot_position)
-                    #print(dimension)
-                    #print(dimension)
                     print(dimension)
                     main()
                 
