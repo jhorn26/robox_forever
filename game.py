@@ -64,12 +64,12 @@ def push_space(shape, grid):
     return True
 
 
-def draw_window(surface, r, g, b):
+def draw_window(surface, r, g, b, dimension):
     surface.fill((r,g,b))
 
     for i in range(len(grid)):
         for j in range(len(grid[i])):
-            pygame.draw.rect(surface, grid[i][j], (int((s_width - 7*30) // 2) + j* 30, int((s_height - 7*30) // 2) + i * 30, 30, 30), 0)
+            pygame.draw.rect(surface, grid[i][j], (int((s_width - dimension[0][0]*30) // 2) + j* 30, int((s_height - dimension[0][1]*30) // 2) + i * 30, 30, 30), 0)
 
 
 def main():
@@ -185,7 +185,7 @@ def main():
                 grid[box.y][box.x] = (139, 0, 0) # type: ignore
 
                 
-        draw_window(win, r, g, b)
+        draw_window(win, r, g, b, dimension)
         
 
         done = all([grid[pos[1]][pos[0]] == (139, 0, 0) for pos in goal_positions])
@@ -285,19 +285,19 @@ def main_opt():
             
             rect_level1 = pygame.Rect(s_width / 4 - 50, (5*s_height) / 12 - 60, 100, 100)
             pygame.draw.rect( win, (0,0,0), rect_level1)
-            level1 = pygame.image.load('\\images\\level1.png')
+            level1 = pygame.image.load('level1.png')
             level1 = pygame.transform.scale(level1, (100, 100))
             win.blit(level1, (s_width / 4 - 50, (5*s_height) / 12 - 60))
 
             rect_level2 = pygame.Rect((3*s_width) / 4 - 50, (5*s_height) / 12 - 60, 100, 100)
             pygame.draw.rect( win, (0,0,0), rect_level2)
-            level2 = pygame.image.load('\\images\\level2.png')
+            level2 = pygame.image.load('level2.png')
             level2 = pygame.transform.scale(level2, (100, 100))
             win.blit(level2, ((3*s_width) / 4 - 50, (5*s_height) / 12 - 60))
 
             rect_level3 = pygame.Rect(s_width / 2 - 50, (3*s_height) / 4 - 60, 100, 100)
             pygame.draw.rect( win, (0,0,0), rect_level3)
-            level3 = pygame.image.load('\\images\\level3.png')
+            level3 = pygame.image.load('level3.png')
             level3 = pygame.transform.scale(level3, (100, 100))
             win.blit(level3, (s_width / 2 - 50, (3*s_height) / 4 - 60))
            
