@@ -317,8 +317,6 @@ def main_opt():
                     goal_positions = lista_dict[level]['goal_positions']
                     locked_positions = lista_dict[level]['locked_positions']
                     dimension = lista_dict[level]['dimension']
-                    print(robot_position)
-                    print(dimension)
                     main()
                 
                 if rect_level2.collidepoint(mouse_position) and color == (0, 0, 160):
@@ -371,6 +369,25 @@ def main_opt():
                     locked_positions = lista_dict[level]['locked_positions']
                     dimension = lista_dict[level]['dimension']
                     main()
+
+                elif event.key == pygame.K_4:  
+                    level = 3
+                    robot_position = lista_dict[level]['robot_position']
+                    boxes_positions = lista_dict[level]['boxes_positions']
+                    goal_positions = lista_dict[level]['goal_positions']
+                    locked_positions = lista_dict[level]['locked_positions']
+                    dimension = lista_dict[level]['dimension']
+                    main()
+
+                elif event.key == pygame.K_5:  
+                    level = 4
+                    robot_position = lista_dict[level]['robot_position']
+                    boxes_positions = lista_dict[level]['boxes_positions']
+                    goal_positions = lista_dict[level]['goal_positions']
+                    locked_positions = lista_dict[level]['locked_positions']
+                    dimension = lista_dict[level]['dimension']
+                    main()
+
                 
                 elif event.key == pygame.K_r:
                     main()
