@@ -64,16 +64,16 @@ def push_space(shape, grid):
     return True
 
 
-def draw_window(surface, r, g, b):
+def draw_window(surface, r, g, b, dimension):
     surface.fill((r,g,b))
 
     for i in range(len(grid)):
         for j in range(len(grid[i])):
-            pygame.draw.rect(surface, grid[i][j], (top_left_x + j* 30, top_left_y + i * 30, 30, 30), 0)
+            pygame.draw.rect(surface, grid[i][j], (int((s_width - dimension[0]) // 2) + j* 30, int((s_height - dimension[1]) // 2) * 30, 30, 30), 0)
 
 
 def main():
-    global grid, r, g, b, color, movimentos, robot_position, boxes_positions, goal_positions, locked_positions
+    global grid, r, g, b, color, movimentos, robot_position, boxes_positions, goal_positions, locked_positions, dimension
 
     robot = Piece(robot_position[0][0], robot_position[0][1], (255, 0, 0))
     boxes = [Piece(boxes_positions[i][0], boxes_positions[i][1], (160, 82, 45)) for i in range(len(boxes_positions))]
@@ -185,7 +185,7 @@ def main():
                 grid[box.y][box.x] = (139, 0, 0) # type: ignore
 
                 
-        draw_window(win, r, g, b)
+        draw_window(win, r, g, b, dimension)
         
 
         done = all([grid[pos[1]][pos[0]] == (139, 0, 0) for pos in goal_positions])
@@ -216,7 +216,7 @@ def main():
     
         
 
-def main_menu():
+def front_page():
     global color
 
     run = True
@@ -251,7 +251,7 @@ def main_menu():
         pygame.display.update()
 
 def main_opt():
-    global color, robot_position, boxes_positions, goal_positions, locked_positions, level, rect_level1, rect_level2, rect_level3
+    global color, robot_position, boxes_positions, goal_positions, locked_positions, level, rect_level1, rect_level2, rect_level3, dimension
     with open('levels.txt', 'r') as arq:
         file = arq.readlines()
 
@@ -268,7 +268,8 @@ def main_opt():
            label = font.render('CONGRATULATIONS', True, (255,255,255))
            win.blit(label, (s_width / 2 - (label.get_width() / 2), s_height / 2 - 50))
            label = font.render('GENIUS!!!', True, (255,255,255))
-           win.blit(label, (s_width / 2 - (label.get_width() / 2), s_height / 2 + 50))  
+           win.blit(label, (s_width / 2 - (label.get_width() / 2), s_height / 2 + 50))
+
 
         elif color == (0, 0, 160):
             font = pygame.font.SysFont('Times New Roman', 60)
@@ -284,19 +285,19 @@ def main_opt():
             
             rect_level1 = pygame.Rect(s_width / 4 - 50, (5*s_height) / 12 - 60, 100, 100)
             pygame.draw.rect( win, (0,0,0), rect_level1)
-            level1 = pygame.image.load('images\\level1.png')
+            level1 = pygame.image.load('level1.png')
             level1 = pygame.transform.scale(level1, (100, 100))
             win.blit(level1, (s_width / 4 - 50, (5*s_height) / 12 - 60))
 
             rect_level2 = pygame.Rect((3*s_width) / 4 - 50, (5*s_height) / 12 - 60, 100, 100)
             pygame.draw.rect( win, (0,0,0), rect_level2)
-            level2 = pygame.image.load('images\\level2.png')
+            level2 = pygame.image.load('level2.png')
             level2 = pygame.transform.scale(level2, (100, 100))
             win.blit(level2, ((3*s_width) / 4 - 50, (5*s_height) / 12 - 60))
 
             rect_level3 = pygame.Rect(s_width / 2 - 50, (3*s_height) / 4 - 60, 100, 100)
             pygame.draw.rect( win, (0,0,0), rect_level3)
-            level3 = pygame.image.load('images\\level3.png')
+            level3 = pygame.image.load('level3.png')
             level3 = pygame.transform.scale(level3, (100, 100))
             win.blit(level3, (s_width / 2 - 50, (3*s_height) / 4 - 60))
            
@@ -315,6 +316,7 @@ def main_opt():
                     boxes_positions = lista_dict[level]['boxes_positions']
                     goal_positions = lista_dict[level]['goal_positions']
                     locked_positions = lista_dict[level]['locked_positions']
+                    dimension = lista_dict[level]['dimension']
                     main()
                 
                 if rect_level2.collidepoint(mouse_position) and color == (0, 0, 160):
@@ -323,6 +325,7 @@ def main_opt():
                     boxes_positions = lista_dict[level]['boxes_positions']
                     goal_positions = lista_dict[level]['goal_positions']
                     locked_positions = lista_dict[level]['locked_positions']
+                    dimension = lista_dict[level]['dimension']
                     main()
 
                 if rect_level3.collidepoint(mouse_position) and color == (0, 0, 160):
@@ -331,6 +334,7 @@ def main_opt():
                     boxes_positions = lista_dict[level]['boxes_positions']
                     goal_positions = lista_dict[level]['goal_positions']
                     locked_positions = lista_dict[level]['locked_positions']
+                    dimension = lista_dict[level]['dimension']
                     main()
 
             elif event.type == pygame.KEYDOWN:
@@ -345,6 +349,7 @@ def main_opt():
                     boxes_positions = lista_dict[level]['boxes_positions']
                     goal_positions = lista_dict[level]['goal_positions']
                     locked_positions = lista_dict[level]['locked_positions']
+                    dimension = lista_dict[level]['dimension']
                     main()
 
                 elif event.key == pygame.K_2:  
@@ -353,6 +358,7 @@ def main_opt():
                     boxes_positions = lista_dict[level]['boxes_positions']
                     goal_positions = lista_dict[level]['goal_positions']
                     locked_positions = lista_dict[level]['locked_positions']
+                    dimension = lista_dict[level]['dimension']
                     main()
 
                 elif event.key == pygame.K_3:  
@@ -361,6 +367,7 @@ def main_opt():
                     boxes_positions = lista_dict[level]['boxes_positions']
                     goal_positions = lista_dict[level]['goal_positions']
                     locked_positions = lista_dict[level]['locked_positions']
+                    dimension = lista_dict[level]['dimension']
                     main()
                 
                 elif event.key == pygame.K_r:
@@ -377,6 +384,7 @@ def main_opt():
                         boxes_positions = lista_dict[level]['boxes_positions']
                         goal_positions = lista_dict[level]['goal_positions']
                         locked_positions = lista_dict[level]['locked_positions']
+                        dimension = lista_dict[level]['dimension']
                         main()
                 
                 elif event.key == pygame.K_ESCAPE:
@@ -394,4 +402,4 @@ r = 100
 g = 100
 b = 100
 
-main_menu()
+front_page()
