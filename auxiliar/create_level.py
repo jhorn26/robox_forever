@@ -1,7 +1,7 @@
 import poligon
 def main():
-    with open("levels.txt", "a") as f:
-        item = ["robot_position", "boxes_positions", "goal_positions", "corners_positions", "walls_positions", "walk_positions"]
+    with open("./../levels.txt", "a") as f:
+        item = ["robot_position", "boxes_positions", "goal_positions", "corners_positions", "walls_positions"]
         line = {k:[] for k in item}
         k = 0
         print(f"Categoria {item[0]} (digite s para passar para a próxima categoria)\n") 
@@ -22,7 +22,7 @@ def main():
 def anexa(item, line, k):
     foobar = entrada()
     if foobar[0] == 1:
-        if k == 5:
+        if k == 4:
             return 1, line
         else:
             return 2, line

@@ -16,8 +16,8 @@ play_height = 210
 top_left_x = int((s_width - play_width) // 2)
 top_left_y = int((s_height - play_height) // 2)
 
-size_grid_x = 10
-size_grid_y = 10
+size_grid_x = 20
+size_grid_y = 20
 
 
 class Piece(object): 
@@ -388,7 +388,33 @@ def main_opt():
                     dimension = lista_dict[level]['dimension']
                     main()
 
-                
+                elif event.key == pygame.K_6:  
+                    level = 5
+                    robot_position = lista_dict[level]['robot_position']
+                    boxes_positions = lista_dict[level]['boxes_positions']
+                    goal_positions = lista_dict[level]['goal_positions']
+                    locked_positions = lista_dict[level]['walk_positions']
+                    dimension = lista_dict[level]['dimension']
+                    main()
+                elif event.key == pygame.K_7:  
+                    level = 6
+                    robot_position = lista_dict[level]['robot_position']
+                    boxes_positions = lista_dict[level]['boxes_positions']
+                    goal_positions = lista_dict[level]['goal_positions']
+                    locked_positions = lista_dict[level]['walk_positions']
+                    dimension = lista_dict[level]['dimension']
+                    main()
+
+                elif event.key == pygame.K_9:  
+                    level = 8
+                    robot_position = lista_dict[level]['robot_position']
+                    boxes_positions = lista_dict[level]['boxes_positions']
+                    goal_positions = lista_dict[level]['goal_positions']
+                    locked_positions = lista_dict[level]['walk_positions']
+                    dimension = lista_dict[level]['dimension']
+                    main()
+
+
                 elif event.key == pygame.K_r:
                     main()
 

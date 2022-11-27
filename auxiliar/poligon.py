@@ -2,7 +2,7 @@ def create_level(coord):
     corners_number = len(coord["corners_positions"])
     walls = []
     dimension = find_dimension(coord)
-    coord["dimension"] = dimension
+    coord["dimension"] = [dimension]
     #Encontra todos os pontos das arestas dos polígonos
     for i in range(corners_number):
         walls = find_all_walls(coord["corners_positions"][i], coord["corners_positions"][(i+1) % corners_number], walls)
@@ -60,4 +60,4 @@ def find_dimension(coord):
             M = k[0]
         if k[1] > N:
             N = k[1]
-    return [M, N]
+    return (M, N)
