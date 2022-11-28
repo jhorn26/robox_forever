@@ -393,11 +393,21 @@ def main_opt():
                     robot_position = lista_dict[level]['robot_position']
                     boxes_positions = lista_dict[level]['boxes_positions']
                     goal_positions = lista_dict[level]['goal_positions']
-                    locked_positions = lista_dict[level]['walk_positions']
+                    locked_positions = lista_dict[level]['locked_positions']
                     dimension = lista_dict[level]['dimension']
                     main()
+
                 elif event.key == pygame.K_7:  
                     level = 6
+                    robot_position = lista_dict[level]['robot_position']
+                    boxes_positions = lista_dict[level]['boxes_positions']
+                    goal_positions = lista_dict[level]['goal_positions']
+                    locked_positions = lista_dict[level]['locked_positions']
+                    dimension = lista_dict[level]['dimension']
+                    main()
+
+                elif event.key == pygame.K_8:  
+                    level = 7
                     robot_position = lista_dict[level]['robot_position']
                     boxes_positions = lista_dict[level]['boxes_positions']
                     goal_positions = lista_dict[level]['goal_positions']
@@ -407,6 +417,33 @@ def main_opt():
 
                 elif event.key == pygame.K_9:  
                     level = 8
+                    robot_position = lista_dict[level]['robot_position']
+                    boxes_positions = lista_dict[level]['boxes_positions']
+                    goal_positions = lista_dict[level]['goal_positions']
+                    locked_positions = lista_dict[level]['walk_positions']
+                    dimension = lista_dict[level]['dimension']
+                    main()
+
+                elif event.key == pygame.K_0:  
+                    level = 9
+                    robot_position = lista_dict[level]['robot_position']
+                    boxes_positions = lista_dict[level]['boxes_positions']
+                    goal_positions = lista_dict[level]['goal_positions']
+                    locked_positions = lista_dict[level]['walk_positions']
+                    dimension = lista_dict[level]['dimension']
+                    main()
+
+                elif event.key == pygame.K_t:  
+                    level = 10
+                    robot_position = lista_dict[level]['robot_position']
+                    boxes_positions = lista_dict[level]['boxes_positions']
+                    goal_positions = lista_dict[level]['goal_positions']
+                    locked_positions = lista_dict[level]['walk_positions']
+                    dimension = lista_dict[level]['dimension']
+                    main()
+
+                elif event.key == pygame.K_y:  
+                    level = 11
                     robot_position = lista_dict[level]['robot_position']
                     boxes_positions = lista_dict[level]['boxes_positions']
                     goal_positions = lista_dict[level]['goal_positions']
