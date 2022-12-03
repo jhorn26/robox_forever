@@ -6,90 +6,154 @@ pygame.init()
 pygame.font.init()
 
 
-s_width = 800
-s_height = 700
-play_width = 210
-play_height = 210
+S_WIDTH = 800
+S_HEIGHT = 700
 
-
-
-top_left_x = int((s_width - play_width) // 2)
-top_left_y = int((s_height - play_height) // 2)
-
-size_grid_x = 20
-size_grid_y = 20
-
-
-class Piece(object): 
-
-    def __init__(self, column, row, color):
-        self.x = column 
-        self.y = row
-        self.color = color
+class Robo(pygame.sprite.Sprite):
+    def __init__(self, pos_x, pos_y):
+        super().__init__()
+        self.x = pos_x
+        self.y = pos_y
+        self.sprites = []
+        for image in ['images\\user_up.gif', 'images\\user_down.gif', 'images\\user_left.gif', 'images\\user_right.gif']:
+            self.sprites.append(pygame.transform.scale(pygame.image.load(image), (30, 30)))
         self.rotation = 0
+        self.image = self.sprites[self.rotation]
+        self.rect = self.image.get_rect()
+        self.rect.topleft = [self.x, self.y]
+
+    def move(self, x_change, y_change, rot_number):
+        self.rotation = rot_number
+        self.image = self.sprites[self.rotation]
+        new_pos = (self.x + 30*x_change, self.y + 30*y_change) 
+        ############ MUDAR ###########
+        wall_pos = [(wall.x, wall.y) for wall in Wall.objects]
+        if new_pos in wall_pos:
+            return 
+
+        for box in Box.objects:
+            if (box.x, box.y) == new_pos:
+                if box.move(x_change, y_change, wall_pos) == False:
+                    return
+            
+
+        self.x = new_pos[0]
+        self.y = new_pos[1]
+        self.rect.topleft = [self.x, self.y] # type: ignore
+
+class Box(pygame.sprite.Sprite):
+
+    objects = []
+    def __init__(self, pos_x, pos_y):
+        super().__init__()
+        self.x = pos_x
+        self.y = pos_y
+        self.image = pygame.transform.scale(pygame.image.load('images\\box.gif'), (30, 30)) 
+        self.rect = self.image.get_rect()
+        self.rect.topleft = [self.x, self.y] # type: ignore
+        self.__class__.objects.append(self)
+
+    def move(self, x_change, y_change, wall_pos):
+        self.rect.topleft = [self.x, self.y] # type: ignore
+        object_aux = self.__class__.objects.copy()
+        object_aux.remove(self)
+        new_pos = (self.x + 30*x_change, self.y + 30*y_change)
+        box_pos = [(box.x, box.y) for box in Box.objects]
+        if new_pos in wall_pos or new_pos in box_pos:
+            return False
+
+        self.x = new_pos[0]
+        self.y = new_pos[1]
+        self.rect.topleft = [self.x, self.y] # type: ignore
+        return True
+
+class Wall(pygame.sprite.Sprite):
+    objects = []
+    def __init__(self, pos_x, pos_y):
+        super().__init__()
+        self.x = pos_x
+        self.y = pos_y
+        self.image = pygame.transform.scale(pygame.image.load('images\\brick.gif'), (30, 30))
+        self.rect = self.image.get_rect()
+        self.rect.topleft = [pos_x, pos_y] # type: ignore
+        self.__class__.objects.append(self)
+
+class Walk(pygame.sprite.Sprite):
+    def __init__(self, pos_x, pos_y):
+        super().__init__()
+        self.image = pygame.transform.scale(pygame.image.load('images\\floor.gif'), (30, 30))
+        self.rect = self.image.get_rect()
+        self.rect.topleft = [pos_x, pos_y] # type: ignore
 
 
-def create_grid(locked_positions=[], objects_positions=[]):
-    grid = [[(100, 100, 100) for x in range(size_grid_x)] for x in range(size_grid_y)]
+class Goal(pygame.sprite.Sprite):
 
-    for i in range(len(grid)):
-        for j in range(len(grid[i])):
-            if (j,i) in locked_positions:
-                grid[i][j] = (0, 0, 0) # type: ignore
-            if (j,i) in objects_positions:
-                grid[i][j] = (160, 82, 45) # type: ignore
-    return grid
+    objects = []
 
-def valid_space(object, grid):    
-    accepted_positions = [[(j, i) for j in range(size_grid_x) if grid[i][j] == (0,0,0) or grid[i][j] == (255, 192, 203)] for i in range(size_grid_y)]
-    accepted_positions = [j for sub in accepted_positions for j in sub]
-    formatted = (object.x, object.y)
+    def __init__(self, pos_x, pos_y):
+        super().__init__()
+        self.x = pos_x
+        self.y = pos_y
+        self.image = pygame.transform.scale(pygame.image.load('images\\port.gif'), (30, 30))
+        self.rect = self.image.get_rect()
+        self.rect.topleft = [pos_x, pos_y] # type: ignore
 
+        self.__class__.objects.append(self)
+
+
+def draw_levels(lista_dict, level):
+    global player_position, boxes_positions, goal_positions, walls_positions, walk_positions, dimension
+
+    player_position = lista_dict[level]['robot_position']
+    boxes_positions = lista_dict[level]['boxes_positions']
+    goal_positions = lista_dict[level]['goal_positions']
+    walls_positions = lista_dict[level]['walls_positions']
+    walk_positions = lista_dict[level]['walk_positions'] + lista_dict[level]['corners_positions']
+    dimension = lista_dict[level]['dimension']
+
+
+def game():
+    global grid, r, g, b, color, movimentos
+    # Centralização do mapa na tela
+    top_left_x = (S_WIDTH - dimension[0][0]*30) // 2
+    top_left_y = (S_HEIGHT - dimension[0][1]*30) // 2
+
+    moving_sprites = pygame.sprite.Group()
+    player = Robo(player_position[0][0]*30 + top_left_x, player_position[0][1]*30 + top_left_y)
+
+    # Adição dos pisos
+    for block in walk_positions:
+        object = Walk(block[0]*30 + top_left_x, block[1]*30 + top_left_y)
+        moving_sprites.add(object)
+
+    # Adição das paredes
+    for block in walls_positions:
+        object = Wall(block[0]*30 + top_left_x, block[1]*30 + top_left_y)
+        moving_sprites.add(object)
+
+    # Adição dos objetivos
+    for block in goal_positions:
+        object = Goal(block[0]*30 + top_left_x, block[1]*30 + top_left_y)
+        moving_sprites.add(object)
+
+    for block in boxes_positions:
+        object = Box(block[0]*30 + top_left_x, block[1]*30 + top_left_y)
+        moving_sprites.add(object)
+
+    moving_sprites.add(player)
+
+    rect = Box(6*30 + top_left_x, 5*30 + top_left_y)
+
+    moving_sprites.add(rect)
     
-    if formatted not in accepted_positions:
-        if formatted[1] > -1 or formatted[0] > -1:
-            return False
 
-    return True
-
-def push_space(shape, grid):    
-    accepted_positions = [[(j, i) for j in range(size_grid_x) if grid[i][j] == (0,0,0) or grid[i][j] == (160,82,45) or grid[i][j] == (255, 192, 203)] for i in range(size_grid_y)]
-    accepted_positions = [j for sub in accepted_positions for j in sub]
-    formatted = (shape.x, shape.y)
-
-    if formatted not in accepted_positions:
-        if formatted[1] > -1 or formatted[0] > -1:
-            return False
-                
-    return True
-
-
-def draw_window(surface, r, g, b, dimension):
-    surface.fill((r,g,b))
-
-    for i in range(len(grid)):
-        for j in range(len(grid[i])):
-            pygame.draw.rect(surface, grid[i][j], (int((s_width - dimension[0][0]*30) // 2) + j* 30, int((s_height - dimension[0][1]*30) // 2) + i * 30, 30, 30), 0)
-
-
-def main():
-    global grid, r, g, b, color, movimentos, robot_position, boxes_positions, goal_positions, locked_positions, dimension
-
-    robot = Piece(robot_position[0][0], robot_position[0][1], (255, 0, 0))
-    boxes = [Piece(boxes_positions[i][0], boxes_positions[i][1], (160, 82, 45)) for i in range(len(boxes_positions))]
-    objects_positions = [(box.x, box.y) for box in boxes]
-    grid = create_grid(locked_positions, objects_positions)
     clock = pygame.time.Clock()
     movimentos = 0
-    start_time = pygame.time.get_ticks() 
+    start_time = pygame.time.get_ticks()
 
     run = True
 
     while run:
-        
-        objects_positions = [(box.x, box.y) for box in boxes]
-        grid = create_grid(locked_positions, objects_positions)
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
@@ -103,7 +167,7 @@ def main():
                     quit()
                 
                 elif event.key == pygame.K_r:
-                    main()
+                    game()
                     run = False
                 
                 elif event.key == pygame.K_ESCAPE:
@@ -114,82 +178,23 @@ def main():
         comandos =  pygame.key.get_pressed()
            
         if comandos[pygame.K_UP] or comandos[pygame.K_w]:
-            robot.y -= 1
-            if not push_space(robot, grid):
-                    robot.y += 1
-            for box in boxes:
-                if box.x==robot.x and box.y==robot.y:
-                    box.y -= 1
-                    movimentos += 1
-                    if not valid_space(box, grid):
-                        box.y += 1
-                        robot.y += 1
-                        movimentos -= 1
+            player.move(0, -1, 0)
 
         if comandos[pygame.K_DOWN] or comandos[pygame.K_s]:
-            robot.y += 1
-            if not push_space(robot, grid):
-                    robot.y -= 1
-            for box in boxes:
-                if box.x==robot.x and box.y==robot.y:
-                    box.y += 1
-                    movimentos += 1
-                    if not valid_space(box, grid):
-                        box.y -= 1
-                        robot.y -= 1
-                        movimentos -= 1
+            player.move(0, 1, 1)
 
         if comandos[pygame.K_LEFT] or comandos[pygame.K_a]:
-            robot.x -= 1
-            if not push_space(robot, grid):
-                    robot.x += 1
-            for box in boxes:
-                if box.x==robot.x and box.y==robot.y:
-                    box.x -= 1
-                    movimentos += 1
-                    if not valid_space(box, grid):
-                        box.x += 1
-                        robot.x += 1
-                        movimentos -= 1
+            player.move(-1, 0, 2)
 
         if comandos[pygame.K_RIGHT] or comandos[pygame.K_d]:
-            robot.x += 1
-            if not push_space(robot, grid):
-                    robot.x -= 1
-            for box in boxes:
-                if box.x==robot.x and box.y==robot.y:
-                    box.x += 1
-                    movimentos += 1
-                    if not valid_space(box, grid):
-                        box.x -= 1
-                        robot.x -= 1
-                        movimentos -= 1
+            player.move(1, 0, 3)
 
+        win.fill((0,0,0))
         
-        for goal in goal_positions:
-            x, y = goal[0], goal[1]
-            if y > -1:
-                grid[y][x] = (255, 192, 203) # type: ignore
-        
-        x, y = robot.x, robot.y
-        if y > -1:
-            grid[y][x] = robot.color # type: ignore
-        
-        for box in boxes:
-            x, y = box.x, box.y
-            if y > -1:
-                grid[y][x] = box.color # type: ignore
-        
-        for box in boxes:
-            if (box.x, box.y) in goal_positions:
-                grid[box.y][box.x] = (139, 0, 0) # type: ignore
+        moving_sprites.draw(win)
 
-                
-        draw_window(win, r, g, b, dimension)
-        
+        done = all([(box.x, box.y) == (goal.x, goal.y) for box in Box.objects for goal in Goal.objects])
 
-        done = all([grid[pos[1]][pos[0]] == (139, 0, 0) for pos in goal_positions])
-        
         font = pygame.font.SysFont('Times New Roman', 20)
         text = font.render(f'MOVIMENTOS: {movimentos}', True, (255,255,255))
         textRect = text.get_rect()
@@ -199,7 +204,7 @@ def main():
         counting_time = pygame.time.get_ticks() - start_time
         counting_seconds = str( round((counting_time%60000)/1000) ).zfill(1)
 
-        counting_text = font.render(f'TIMER: {counting_seconds}', True, (255,255,255))
+        counting_text = font.render(f'TIMER: ', True, (255,255,255))
         counting_rect = counting_text.get_rect()
         counting_rect.center = (650, top_left_y)
         
@@ -207,13 +212,15 @@ def main():
         
         pygame.display.flip()
         clock.tick(7)
-        
+
         if done:
             run = False
-        
-    
+
     color = (255, 255, 0)
-    
+
+    print('Box: ', )
+
+
         
 
 def main_menu():
@@ -227,9 +234,9 @@ def main_menu():
         
         font = pygame.font.SysFont('Times New Roman', 100)
         label = font.render('ROBLOX', True, (255,255,255))
-        win.blit(label, (s_width / 2 - (label.get_width() / 2), s_height / 2 - 150))
+        win.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 - 150))
         label = font.render('FOREVER', True, (255,255,255))
-        win.blit(label, (s_width / 2 - (label.get_width() / 2), s_height / 2 + 30)) 
+        win.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 + 30)) 
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -264,42 +271,42 @@ def main_opt():
         if color == (255, 255, 0):
            font = pygame.font.SysFont('Times New Roman', 60)
            label = font.render('WELL', True, (255,255,255))
-           win.blit(label, (s_width / 2 - (label.get_width() / 2), s_height / 2 - 150)) 
+           win.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 - 150)) 
            label = font.render('CONGRATULATIONS', True, (255,255,255))
-           win.blit(label, (s_width / 2 - (label.get_width() / 2), s_height / 2 - 50))
+           win.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 - 50))
            label = font.render('GENIUS!!!', True, (255,255,255))
-           win.blit(label, (s_width / 2 - (label.get_width() / 2), s_height / 2 + 50))
+           win.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 + 50))
 
 
         elif color == (0, 0, 160):
             font = pygame.font.SysFont('Times New Roman', 60)
             label = font.render('SELECT LEVEL', True, (255,255,255))
-            win.blit(label, (s_width / 2 - (label.get_width() / 2), s_height / 6 - 60))
+            win.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 6 - 60))
             font = pygame.font.SysFont('Times New Roman', 40)
             label = font.render('LEVEL 1', True, (255,255,255))
-            win.blit(label, (s_width / 4 - (label.get_width() / 2), (3*s_height) / 8 - 100))
+            win.blit(label, (S_WIDTH / 4 - (label.get_width() / 2), (3*S_HEIGHT) / 8 - 100))
             label = font.render('LEVEL 2', True, (255,255,255))
-            win.blit(label, ((3*s_width) / 4 - (label.get_width() / 2), (3*s_height) / 8 - 100))
+            win.blit(label, ((3*S_WIDTH) / 4 - (label.get_width() / 2), (3*S_HEIGHT) / 8 - 100))
             label = font.render('LEVEL 3', True, (255,255,255))
-            win.blit(label, (s_width / 2 - (label.get_width() / 2), (17*s_height) / 24 - 100))
+            win.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), (17*S_HEIGHT) / 24 - 100))
             
-            rect_level1 = pygame.Rect(s_width / 4 - 50, (5*s_height) / 12 - 60, 100, 100)
+            rect_level1 = pygame.Rect(S_WIDTH / 4 - 50, (5*S_HEIGHT) / 12 - 60, 100, 100)
             pygame.draw.rect( win, (0,0,0), rect_level1)
             level1 = pygame.image.load('images\\level1.png')
             level1 = pygame.transform.scale(level1, (100, 100))
-            win.blit(level1, (s_width / 4 - 50, (5*s_height) / 12 - 60))
+            win.blit(level1, (S_WIDTH / 4 - 50, (5*S_HEIGHT) / 12 - 60))
 
-            rect_level2 = pygame.Rect((3*s_width) / 4 - 50, (5*s_height) / 12 - 60, 100, 100)
+            rect_level2 = pygame.Rect((3*S_WIDTH) / 4 - 50, (5*S_HEIGHT) / 12 - 60, 100, 100)
             pygame.draw.rect( win, (0,0,0), rect_level2)
             level2 = pygame.image.load('images\\level2.png')
             level2 = pygame.transform.scale(level2, (100, 100))
-            win.blit(level2, ((3*s_width) / 4 - 50, (5*s_height) / 12 - 60))
+            win.blit(level2, ((3*S_WIDTH) / 4 - 50, (5*S_HEIGHT) / 12 - 60))
 
-            rect_level3 = pygame.Rect(s_width / 2 - 50, (3*s_height) / 4 - 60, 100, 100)
+            rect_level3 = pygame.Rect(S_WIDTH / 2 - 50, (3*S_HEIGHT) / 4 - 60, 100, 100)
             pygame.draw.rect( win, (0,0,0), rect_level3)
             level3 = pygame.image.load('images\\level3.png')
             level3 = pygame.transform.scale(level3, (100, 100))
-            win.blit(level3, (s_width / 2 - 50, (3*s_height) / 4 - 60))
+            win.blit(level3, (S_WIDTH / 2 - 50, (3*S_HEIGHT) / 4 - 60))
            
 
         for event in pygame.event.get():
@@ -311,31 +318,16 @@ def main_opt():
             elif event.type == pygame.MOUSEBUTTONUP:
                 mouse_position = pygame.mouse.get_pos() 
                 if rect_level1.collidepoint(mouse_position) and color == (0, 0, 160):
-                    level = 0 
-                    robot_position = lista_dict[level]['robot_position']
-                    boxes_positions = lista_dict[level]['boxes_positions']
-                    goal_positions = lista_dict[level]['goal_positions']
-                    locked_positions = lista_dict[level]['locked_positions']
-                    dimension = lista_dict[level]['dimension']
-                    main()
+                    draw_levels(lista_dict, 0)
+                    game()
                 
                 if rect_level2.collidepoint(mouse_position) and color == (0, 0, 160):
-                    level = 1 
-                    robot_position = lista_dict[level]['robot_position']
-                    boxes_positions = lista_dict[level]['boxes_positions']
-                    goal_positions = lista_dict[level]['goal_positions']
-                    locked_positions = lista_dict[level]['locked_positions']
-                    dimension = lista_dict[level]['dimension']
-                    main()
+                    draw_levels(lista_dict, 1)
+                    game()
 
                 if rect_level3.collidepoint(mouse_position) and color == (0, 0, 160):
-                    level = 2 
-                    robot_position = lista_dict[level]['robot_position']
-                    boxes_positions = lista_dict[level]['boxes_positions']
-                    goal_positions = lista_dict[level]['goal_positions']
-                    locked_positions = lista_dict[level]['locked_positions']
-                    dimension = lista_dict[level]['dimension']
-                    main()
+                    draw_levels(lista_dict, 2)
+                    game()
 
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_q:
@@ -344,116 +336,48 @@ def main_opt():
                     quit()
             
                 elif event.key == pygame.K_1:  
-                    level = 0 
-                    robot_position = lista_dict[level]['robot_position']
-                    boxes_positions = lista_dict[level]['boxes_positions']
-                    goal_positions = lista_dict[level]['goal_positions']
-                    locked_positions = lista_dict[level]['locked_positions']
-                    dimension = lista_dict[level]['dimension']
-                    main()
+                    level = 0
+                    draw_levels(lista_dict, level)
+                    game()
 
                 elif event.key == pygame.K_2:  
                     level = 1
-                    robot_position = lista_dict[level]['robot_position']
-                    boxes_positions = lista_dict[level]['boxes_positions']
-                    goal_positions = lista_dict[level]['goal_positions']
-                    locked_positions = lista_dict[level]['locked_positions']
-                    dimension = lista_dict[level]['dimension']
-                    main()
+                    draw_levels(lista_dict, level)
+                    game()
 
-                elif event.key == pygame.K_3:  
-                    level = 2
-                    robot_position = lista_dict[level]['robot_position']
-                    boxes_positions = lista_dict[level]['boxes_positions']
-                    goal_positions = lista_dict[level]['goal_positions']
-                    locked_positions = lista_dict[level]['locked_positions']
-                    dimension = lista_dict[level]['dimension']
-                    main()
+                elif event.key == pygame.K_3: 
+                    level = 2 
+                    draw_levels(lista_dict, level)
+                    game()
 
                 elif event.key == pygame.K_4:  
                     level = 3
-                    robot_position = lista_dict[level]['robot_position']
-                    boxes_positions = lista_dict[level]['boxes_positions']
-                    goal_positions = lista_dict[level]['goal_positions']
-                    locked_positions = lista_dict[level]['locked_positions']
-                    dimension = lista_dict[level]['dimension']
-                    main()
+                    draw_levels(lista_dict, level)
+                    game()
 
                 elif event.key == pygame.K_5:  
                     level = 4
-                    robot_position = lista_dict[level]['robot_position']
-                    boxes_positions = lista_dict[level]['boxes_positions']
-                    goal_positions = lista_dict[level]['goal_positions']
-                    locked_positions = lista_dict[level]['locked_positions']
-                    dimension = lista_dict[level]['dimension']
-                    main()
+                    draw_levels(lista_dict, level)
+                    game()
 
                 elif event.key == pygame.K_6:  
                     level = 5
-                    robot_position = lista_dict[level]['robot_position']
-                    boxes_positions = lista_dict[level]['boxes_positions']
-                    goal_positions = lista_dict[level]['goal_positions']
-                    locked_positions = lista_dict[level]['locked_positions']
-                    dimension = lista_dict[level]['dimension']
-                    main()
+                    draw_levels(lista_dict, level)
+                    game()
 
                 elif event.key == pygame.K_7:  
                     level = 6
-                    robot_position = lista_dict[level]['robot_position']
-                    boxes_positions = lista_dict[level]['boxes_positions']
-                    goal_positions = lista_dict[level]['goal_positions']
-                    locked_positions = lista_dict[level]['locked_positions']
-                    dimension = lista_dict[level]['dimension']
-                    main()
+                    draw_levels(lista_dict, level)
+                    game()
 
                 elif event.key == pygame.K_8:  
-                    level = 7
-                    robot_position = lista_dict[level]['robot_position']
-                    boxes_positions = lista_dict[level]['boxes_positions']
-                    goal_positions = lista_dict[level]['goal_positions']
-                    locked_positions = lista_dict[level]['walk_positions']
-                    dimension = lista_dict[level]['dimension']
-                    main()
-
-                elif event.key == pygame.K_9:  
                     level = 8
-                    robot_position = lista_dict[level]['robot_position']
-                    boxes_positions = lista_dict[level]['boxes_positions']
-                    goal_positions = lista_dict[level]['goal_positions']
-                    locked_positions = lista_dict[level]['walk_positions']
-                    dimension = lista_dict[level]['dimension']
-                    main()
+                    draw_levels(lista_dict, level)
+                    game()
 
-                elif event.key == pygame.K_0:  
-                    level = 9
-                    robot_position = lista_dict[level]['robot_position']
-                    boxes_positions = lista_dict[level]['boxes_positions']
-                    goal_positions = lista_dict[level]['goal_positions']
-                    locked_positions = lista_dict[level]['walk_positions']
-                    dimension = lista_dict[level]['dimension']
-                    main()
-
-                elif event.key == pygame.K_t:  
-                    level = 10
-                    robot_position = lista_dict[level]['robot_position']
-                    boxes_positions = lista_dict[level]['boxes_positions']
-                    goal_positions = lista_dict[level]['goal_positions']
-                    locked_positions = lista_dict[level]['walk_positions']
-                    dimension = lista_dict[level]['dimension']
-                    main()
-
-                elif event.key == pygame.K_y:  
-                    level = 11
-                    robot_position = lista_dict[level]['robot_position']
-                    boxes_positions = lista_dict[level]['boxes_positions']
-                    goal_positions = lista_dict[level]['goal_positions']
-                    locked_positions = lista_dict[level]['walk_positions']
-                    dimension = lista_dict[level]['dimension']
-                    main()
-
-
+                
                 elif event.key == pygame.K_r:
-                    main()
+                    game()
 
                 elif event.key == pygame.K_SPACE:
                     if level == len(lista_dict)-1:
@@ -467,7 +391,7 @@ def main_opt():
                         goal_positions = lista_dict[level]['goal_positions']
                         locked_positions = lista_dict[level]['locked_positions']
                         dimension = lista_dict[level]['dimension']
-                        main()
+                        game()
                 
                 elif event.key == pygame.K_ESCAPE:
                     color = (0, 0, 160)
@@ -477,7 +401,7 @@ def main_opt():
 
         pygame.display.update()
 
-win = pygame.display.set_mode((s_width, s_height))
+win = pygame.display.set_mode((S_WIDTH, S_HEIGHT))
 pygame.display.set_caption("Sokoban")
 
 r = 100
