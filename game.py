@@ -9,6 +9,21 @@ pygame.font.init()
 S_WIDTH = 800
 S_HEIGHT = 700
 
+def select_level(level, position):
+    dim = 80
+    pos_x = position[0]*(S_WIDTH/5 - 20)-dim/2 + 120
+    pos_y = position[1]*((S_HEIGHT - 300)/3) + dim + 150
+    font = pygame.font.SysFont('Times New Roman', 15)
+    label = font.render('LEVEL ' + str(level + 1), True, (255,255,255))
+    window.blit(label, ((pos_x + (dim - label.get_width())/2, pos_y - label.get_height())))
+    rect_level = pygame.Rect(pos_x, pos_y, dim, dim)
+    pygame.draw.rect( window, (0,0,0), rect_level)
+    image_level = pygame.image.load('images\\level1.png')
+    image_level = pygame.transform.scale(image_level, (dim, dim))
+    window.blit(image_level, (pos_x, pos_y))
+
+    return (rect_level, level)
+
 def draw_levels(lista_dict, level):
     global player_position, boxes_positions, goal_positions, walls_positions, walk_positions, dimension
 
@@ -155,6 +170,7 @@ def main():
 
     lista_dict = [ast.literal_eval(line) for line in file]
     level = None
+    menu = []
     run = True
 
     while run:
@@ -172,31 +188,12 @@ def main():
             font = pygame.font.SysFont('Times New Roman', 60)
             label = font.render('SELECT LEVEL', True, (255,255,255))
             window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 6 - 60))
-            font = pygame.font.SysFont('Times New Roman', 40)
-            label = font.render('LEVEL 1', True, (255,255,255))
-            window.blit(label, (S_WIDTH / 4 - (label.get_width() / 2), (3*S_HEIGHT) / 8 - 100))
-            label = font.render('LEVEL 2', True, (255,255,255))
-            window.blit(label, ((3*S_WIDTH) / 4 - (label.get_width() / 2), (3*S_HEIGHT) / 8 - 100))
-            label = font.render('LEVEL 3', True, (255,255,255))
-            window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), (17*S_HEIGHT) / 24 - 100))
-            
-            rect_level1 = pygame.Rect(S_WIDTH / 4 - 50, (5*S_HEIGHT) / 12 - 60, 100, 100)
-            pygame.draw.rect( window, (0,0,0), rect_level1)
-            level1 = pygame.image.load('images\\level1.png')
-            level1 = pygame.transform.scale(level1, (100, 100))
-            window.blit(level1, (S_WIDTH / 4 - 50, (5*S_HEIGHT) / 12 - 60))
 
-            rect_level2 = pygame.Rect((3*S_WIDTH) / 4 - 50, (5*S_HEIGHT) / 12 - 60, 100, 100)
-            pygame.draw.rect( window, (0,0,0), rect_level2)
-            level2 = pygame.image.load('images\\level2.png')
-            level2 = pygame.transform.scale(level2, (100, 100))
-            window.blit(level2, ((3*S_WIDTH) / 4 - 50, (5*S_HEIGHT) / 12 - 60))
-
-            rect_level3 = pygame.Rect(S_WIDTH / 2 - 50, (3*S_HEIGHT) / 4 - 60, 100, 100)
-            pygame.draw.rect( window, (0,0,0), rect_level3)
-            level3 = pygame.image.load('images\\level3.png')
-            level3 = pygame.transform.scale(level3, (100, 100))
-            window.blit(level3, (S_WIDTH / 2 - 50, (3*S_HEIGHT) / 4 - 60))
+            i = 0
+            for j in range(3):
+                for k in range(5):
+                    menu.append(select_level(i, (k, j)))
+                    i += 1
            
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -206,17 +203,10 @@ def main():
             
             elif event.type == pygame.MOUSEBUTTONUP:
                 mouse_position = pygame.mouse.get_pos() 
-                if rect_level1.collidepoint(mouse_position) and color == (0, 0, 160):
-                    draw_levels(lista_dict, 0)
-                    exec_game()
-                
-                if rect_level2.collidepoint(mouse_position) and color == (0, 0, 160):
-                    draw_levels(lista_dict, 1)
-                    exec_game()
-
-                if rect_level3.collidepoint(mouse_position) and color == (0, 0, 160):
-                    draw_levels(lista_dict, 2)
-                    exec_game()
+                for levels in menu:
+                    if levels[0].collidepoint(mouse_position) and color == (0, 0, 160):
+                        draw_levels(lista_dict, (levels[1]))
+                        exec_game()
 
             #Eventos associados a cada tecla quando o jogo não está rodando
             elif event.type == pygame.KEYDOWN:
@@ -224,46 +214,6 @@ def main():
                     run = False
                     pygame.display.quit()
                     quit()
-            
-                elif event.key == pygame.K_1:  
-                    level = 0
-                    draw_levels(lista_dict, level)
-                    exec_game()
-
-                elif event.key == pygame.K_2:  
-                    level = 1
-                    draw_levels(lista_dict, level)
-                    exec_game()
-
-                elif event.key == pygame.K_3: 
-                    level = 2 
-                    draw_levels(lista_dict, level)
-                    exec_game()
-
-                elif event.key == pygame.K_4:  
-                    level = 3
-                    draw_levels(lista_dict, level)
-                    exec_game()
-
-                elif event.key == pygame.K_5:  
-                    level = 4
-                    draw_levels(lista_dict, level)
-                    exec_game()
-
-                elif event.key == pygame.K_6:  
-                    level = 5
-                    draw_levels(lista_dict, level)
-                    exec_game()
-
-                elif event.key == pygame.K_7:  
-                    level = 6
-                    draw_levels(lista_dict, level)
-                    exec_game()
-
-                elif event.key == pygame.K_8:  
-                    level = 8
-                    draw_levels(lista_dict, level)
-                    exec_game()
 
                 elif event.key == pygame.K_r:
                     exec_game()
