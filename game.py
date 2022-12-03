@@ -14,7 +14,7 @@ class Robo(pygame.sprite.Sprite):
         self.x = pos_x
         self.y = pos_y
         self.sprites = []
-        for image in ['images\\user_up.gif', 'images\\user_down.gif', 'images\\user_left.gif', 'images\\user_right.gif']:
+        for image in ['images\\player_up.png', 'images\\player_down.png', 'images\\player_left.png', 'images\\player_right.png']:
             self.sprites.append(pygame.transform.scale(pygame.image.load(image), (30, 30)))
         self.rotation = 0
         self.image = self.sprites[self.rotation]
