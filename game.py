@@ -19,15 +19,20 @@ def draw_levels(lista_dict, level):
     walk_positions = lista_dict[level]['walk_positions']
     dimension = lista_dict[level]['dimension']
 
-def exec_game():
-    global grid, r, g, b, color, movimentos
+def time_and_moviment(movimentos, start_time, top_left_y):
+    font = pygame.font.SysFont('Times New Roman', 20)
+    text = font.render(f'MOVIMENTOS: {movimentos}', True, (255,255,255))
+    textRect = text.get_rect()
+    textRect.center = (100, top_left_y)
+    window.blit(text, textRect)
+    counting_time = pygame.time.get_ticks() - start_time
+    counting_seconds = str( round((counting_time)/1000) ).zfill(1)
+    counting_text = font.render(f'TIMER: {counting_seconds}', True, (255,255,255))
+    counting_rect = counting_text.get_rect()
+    counting_rect.center = (650, top_left_y)
+    window.blit(counting_text, counting_rect)
 
-    #Centralização do mapa na tela
-    top_left_x = (S_WIDTH - dimension[0][0]*30) // 2
-    top_left_y = (S_HEIGHT - dimension[0][1]*30) // 2
-    moving_sprites = pygame.sprite.Group()
-    player = Robo(player_position[0][0]*30 + top_left_x, player_position[0][1]*30 + top_left_y)
-
+def create_objects(moving_sprites, top_left_x, top_left_y, player):
     #Cria os objetos em suas respectivas categorias
     for cat in [[walk_positions, Walk], [walls_positions, Wall], [goal_positions, Goal], [boxes_positions, Box]]:
         #Retira todos os objetos possivelmente existentes na categoria
@@ -38,6 +43,19 @@ def exec_game():
             object = cat[1](block[0]*30 + top_left_x, block[1]*30 + top_left_y)
             moving_sprites.add(object)
     moving_sprites.add(player)
+    return moving_sprites
+
+def exec_game():
+    global grid, r, g, b, color, movimentos
+
+    #Centralização do mapa na tela
+    top_left_x = (S_WIDTH - dimension[0][0]*30) // 2
+    top_left_y = (S_HEIGHT - dimension[0][1]*30) // 2
+    moving_sprites = pygame.sprite.Group()
+    player = Robo(player_position[0][0]*30 + top_left_x, player_position[0][1]*30 + top_left_y)
+
+    #Criação dos objetos 
+    moving_sprites = create_objects(moving_sprites, top_left_x, top_left_y, player)
 
     #Inicialização do relógio e contador de movimentos
     clock = pygame.time.Clock()
@@ -45,32 +63,29 @@ def exec_game():
     start_time = pygame.time.get_ticks()
 
     #Execução do jogo
-    window.fill((0,0,0))
     run = True
     while run:
+        #Tratamento de eventos (teclas para sair do jogo)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
                 pygame.display.quit()
                 quit()
-            
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_q:
                     run = False
                     pygame.display.quit()
                     quit()
-                
                 elif event.key == pygame.K_r:
                     exec_game()
                     run = False
-                
                 elif event.key == pygame.K_ESCAPE:
                     color = (0, 0, 160)
                     main()
                     run = False
 
         comandos =  pygame.key.get_pressed()
-        
+    
         #Movimento do jogador
         if comandos[pygame.K_UP] or comandos[pygame.K_w]:
             movimentos += player.move(0, -1, 0)
@@ -81,6 +96,8 @@ def exec_game():
         if comandos[pygame.K_RIGHT] or comandos[pygame.K_d]:
             movimentos += player.move(1, 0, 3)
 
+        window.fill((0,0,0))
+        
         moving_sprites.draw(window)
 
         #Condição de vitória
@@ -91,22 +108,12 @@ def exec_game():
             run = False
 
         #Contagem do tempo e movimentos
-        font = pygame.font.SysFont('Times New Roman', 20)
-        text = font.render(f'MOVIMENTOS: {movimentos}', True, (255,255,255))
-        textRect = text.get_rect()
-        textRect.center = (100, top_left_y)
-        window.blit(text, textRect)
-        counting_time = pygame.time.get_ticks() - start_time
-        counting_seconds = str( round((counting_time)/1000) ).zfill(1)
-        counting_text = font.render(f'TIMER: {counting_seconds}', True, (255,255,255))
-        counting_rect = counting_text.get_rect()
-        counting_rect.center = (650, top_left_y)
-        window.blit(counting_text, counting_rect)
+        time_and_moviment(movimentos, start_time, top_left_y)
 
         pygame.display.flip()
         clock.tick(7)
 
-    color = (255, 0, 0)        
+    color = (255, 255, 0)        
 
 def main_menu():
     global color
@@ -210,6 +217,7 @@ def main():
                 if rect_level3.collidepoint(mouse_position) and color == (0, 0, 160):
                     draw_levels(lista_dict, 2)
                     exec_game()
+
             #Eventos associados a cada tecla quando o jogo não está rodando
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_q:
