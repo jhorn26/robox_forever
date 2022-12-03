@@ -1,11 +1,10 @@
 import pygame
 import ast
 
-
 pygame.init()
 pygame.font.init()
 
-
+#Constantes para centralização do jogo na tela
 S_WIDTH = 800
 S_HEIGHT = 700
 
@@ -26,7 +25,6 @@ class Robo(pygame.sprite.Sprite):
         self.rotation = rot_number
         self.image = self.sprites[self.rotation]
         new_pos = (self.x + 30*x_change, self.y + 30*y_change) 
-        ############ MUDAR ###########
         wall_pos = [(wall.x, wall.y) for wall in Wall.objects]
         if new_pos in wall_pos:
             return 
@@ -36,7 +34,6 @@ class Robo(pygame.sprite.Sprite):
                 if box.move(x_change, y_change, wall_pos) == False:
                     return
             
-
         self.x = new_pos[0]
         self.y = new_pos[1]
         self.rect.topleft = [self.x, self.y] # type: ignore
@@ -85,11 +82,9 @@ class Walk(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.topleft = [pos_x, pos_y] # type: ignore
 
-
 class Goal(pygame.sprite.Sprite):
 
     objects = []
-
     def __init__(self, pos_x, pos_y):
         super().__init__()
         self.x = pos_x
@@ -100,7 +95,6 @@ class Goal(pygame.sprite.Sprite):
 
         self.__class__.objects.append(self)
 
-
 def draw_levels(lista_dict, level):
     global player_position, boxes_positions, goal_positions, walls_positions, walk_positions, dimension
 
@@ -108,51 +102,34 @@ def draw_levels(lista_dict, level):
     boxes_positions = lista_dict[level]['boxes_positions']
     goal_positions = lista_dict[level]['goal_positions']
     walls_positions = lista_dict[level]['walls_positions']
-    walk_positions = lista_dict[level]['walk_positions'] + lista_dict[level]['corners_positions']
+    walk_positions = lista_dict[level]['walk_positions']
     dimension = lista_dict[level]['dimension']
-
 
 def game():
     global grid, r, g, b, color, movimentos
     # Centralização do mapa na tela
     top_left_x = (S_WIDTH - dimension[0][0]*30) // 2
     top_left_y = (S_HEIGHT - dimension[0][1]*30) // 2
-
     moving_sprites = pygame.sprite.Group()
     player = Robo(player_position[0][0]*30 + top_left_x, player_position[0][1]*30 + top_left_y)
 
-    # Adição dos pisos
-    for block in walk_positions:
-        object = Walk(block[0]*30 + top_left_x, block[1]*30 + top_left_y)
-        moving_sprites.add(object)
-
-    # Adição das paredes
-    for block in walls_positions:
-        object = Wall(block[0]*30 + top_left_x, block[1]*30 + top_left_y)
-        moving_sprites.add(object)
-
-    # Adição dos objetivos
-    for block in goal_positions:
-        object = Goal(block[0]*30 + top_left_x, block[1]*30 + top_left_y)
-        moving_sprites.add(object)
-
-    for block in boxes_positions:
-        object = Box(block[0]*30 + top_left_x, block[1]*30 + top_left_y)
-        moving_sprites.add(object)
-
+    #Cria os objetos em suas respectivas categorias
+    for cat in [[walk_positions, Walk], [walls_positions, Wall], [goal_positions, Goal], [boxes_positions, Box]]:
+        #Retira todos os objetos possivelmente existentes na categoria
+        if cat[1] is not Walk:
+            cat[1].objects.clear()
+        #Adiciona os objetos
+        for block in cat[0]:
+            object = cat[1](block[0]*30 + top_left_x, block[1]*30 + top_left_y)
+            moving_sprites.add(object)
     moving_sprites.add(player)
 
-    rect = Box(6*30 + top_left_x, 5*30 + top_left_y)
-
-    moving_sprites.add(rect)
-    
-
+    #Inicialização do relógio e contador de movimentos
     clock = pygame.time.Clock()
     movimentos = 0
     start_time = pygame.time.get_ticks()
 
     run = True
-
     while run:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -176,7 +153,8 @@ def game():
                     run = False
 
         comandos =  pygame.key.get_pressed()
-           
+        
+        #Movimento do jogador
         if comandos[pygame.K_UP] or comandos[pygame.K_w]:
             player.move(0, -1, 0)
 
@@ -193,7 +171,12 @@ def game():
         
         moving_sprites.draw(win)
 
-        done = all([(box.x, box.y) == (goal.x, goal.y) for box in Box.objects for goal in Goal.objects])
+        #Condição de vitória
+        box_pos = [(box.x, box.y) for box in Box.objects]
+        goal_pos = [(goal.x, goal.y) for goal in Goal.objects]
+        diff = [x for x in box_pos if x not in goal_pos]
+        if diff == []:
+            run = False
 
         font = pygame.font.SysFont('Times New Roman', 20)
         text = font.render(f'MOVIMENTOS: {movimentos}', True, (255,255,255))
@@ -213,15 +196,7 @@ def game():
         pygame.display.flip()
         clock.tick(7)
 
-        if done:
-            run = False
-
-    color = (255, 255, 0)
-
-    print('Box: ', )
-
-
-        
+    color = (255, 0, 0)        
 
 def main_menu():
     global color
@@ -247,7 +222,6 @@ def main_menu():
                     run = False
                     pygame.display.quit()
                     quit()
-            
             
                 elif event.key == pygame.K_SPACE:   
                     main_opt()
@@ -375,7 +349,6 @@ def main_opt():
                     draw_levels(lista_dict, level)
                     game()
 
-                
                 elif event.key == pygame.K_r:
                     game()
 
@@ -386,11 +359,7 @@ def main_opt():
                         run = False
                     elif isinstance(level, int):
                         level += 1 
-                        robot_position = lista_dict[level]['robot_position']
-                        boxes_positions = lista_dict[level]['boxes_positions']
-                        goal_positions = lista_dict[level]['goal_positions']
-                        locked_positions = lista_dict[level]['locked_positions']
-                        dimension = lista_dict[level]['dimension']
+                        draw_levels(lista_dict, level)
                         game()
                 
                 elif event.key == pygame.K_ESCAPE:
@@ -398,14 +367,9 @@ def main_opt():
                     main_opt()
                     run = False
 
-
         pygame.display.update()
 
 win = pygame.display.set_mode((S_WIDTH, S_HEIGHT))
 pygame.display.set_caption("Sokoban")
-
-r = 100
-g = 100
-b = 100
 
 main_menu()
