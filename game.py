@@ -215,6 +215,7 @@ def main():
                 mouse_position = pygame.mouse.get_pos() 
                 for levels in menu:
                     if levels[0].collidepoint(mouse_position) and color == (0, 0, 160):
+                        level = levels[1]
                         draw_levels(lista_dict, (levels[1]))
                         exec_game()
 
