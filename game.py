@@ -16,16 +16,16 @@ def select_level(level, position):
     dim = 80
     pos_x = position[0]*(S_WIDTH/5 - 20)-dim/2 + 120
     pos_y = position[1]*((S_HEIGHT - 300)/3) + dim + 150
+    text = 'LEVEL ' + str(level + 1)
     font = pygame.font.SysFont('Times New Roman', 15)
-    label = font.render('LEVEL ' + str(level + 1), True, (255,255,255))
+    label = font.render(text, True, (30, 30, 30))
     window.blit(label, ((pos_x + (dim - label.get_width())/2, pos_y - label.get_height())))
     rect_level = pygame.Rect(pos_x, pos_y, dim, dim)
-    pygame.draw.rect( window, (0,0,0), rect_level)
     image_level = pygame.image.load('images\\level' + str(level + 1) + '.png')
     image_level = pygame.transform.scale(image_level, (dim, dim))
     window.blit(image_level, (pos_x, pos_y))
 
-    return (rect_level, level)
+    return (rect_level, level, text)
 
 def draw_levels(lista_dict, level):
     global player_position, boxes_positions, goal_positions, walls_positions, walk_positions, dimension
@@ -37,18 +37,21 @@ def draw_levels(lista_dict, level):
     walk_positions = lista_dict[level]['walk_positions']
     dimension = lista_dict[level]['dimension']
 
-def time_and_moviment(movimentos, start_time, top_left_y):
+def time_and_moviment_and_title(movimentos, start_time, top_left_y):
     font = pygame.font.SysFont('Times New Roman', 20)
-    text = font.render(f'MOVIMENTOS: {movimentos}', True, (255,255,255))
+    text = font.render(f'MOVIMENTOS: {movimentos}', True, (30, 30, 30))
     textRect = text.get_rect()
     textRect.center = (100, top_left_y)
     window.blit(text, textRect)
     counting_time = pygame.time.get_ticks() - start_time
     counting_seconds = str( round((counting_time)/1000) ).zfill(1)
-    counting_text = font.render(f'TIMER: {counting_seconds}', True, (255,255,255))
+    counting_text = font.render(f'TIMER: {counting_seconds}', True, (30, 30, 30))
     counting_rect = counting_text.get_rect()
     counting_rect.center = (650, top_left_y)
     window.blit(counting_text, counting_rect)
+    font = pygame.font.SysFont('Times New Roman', 60)
+    label = font.render(title, True, (30, 30, 30))
+    window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), 80))
 
 def create_objects(moving_sprites, top_left_x, top_left_y, player):
     #Cria os objetos em suas respectivas categorias
@@ -63,14 +66,22 @@ def create_objects(moving_sprites, top_left_x, top_left_y, player):
     moving_sprites.add(player)
     return moving_sprites
 
+def update_version(list_versions, player, top_left_x, top_left_y):
+    dict = {}
+    dict['robot_position'] = [(int((player.x - top_left_x)/30), int((player.y - top_left_y)/30))]
+    dict['boxes_positions'] = [(int((box.x - top_left_x)/30), int((box.y - top_left_y)/30)) for box in Box.objects]
+    
+    list_versions.append(dict)
+
+
 def exec_game():
-    global grid, r, g, b, color, movimentos
+    global color, boxes_positions
 
     #Imagem de fundo
     window.blit(background, (0, 0))
 
     #Centralização do mapa na tela
-    top_left_x = (S_WIDTH - dimension[0][0]*30) // 2
+    top_left_x = (S_WIDTH - dimension[0][0]*30) // 2 - 20
     top_left_y = (S_HEIGHT - dimension[0][1]*30) // 2
     moving_sprites = pygame.sprite.Group()
     player = Robo(player_position[0][0]*30 + top_left_x, player_position[0][1]*30 + top_left_y)
@@ -82,6 +93,9 @@ def exec_game():
     clock = pygame.time.Clock()
     movimentos = 0
     start_time = pygame.time.get_ticks()
+    movimentos_aux = 0
+    list_versions = []
+    update_version(list_versions, player, top_left_x, top_left_y)
 
     #Execução do jogo
     run = True
@@ -89,6 +103,7 @@ def exec_game():
         #Tratamento de eventos (teclas para sair do jogo)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                print(moving_sprites)
                 run = False
                 pygame.display.quit()
                 quit()
@@ -104,6 +119,15 @@ def exec_game():
                     color = (0, 0, 160)
                     main()
                     run = False
+                elif event.key == pygame.K_z:
+                    if len(list_versions) > 1:
+                        print(list_versions)
+                        print(movimentos)
+                        player = Robo(list_versions[-2]['robot_position'][0][0]*30 + top_left_x, list_versions[-2]['robot_position'][0][1]*30 + top_left_y)
+                        boxes_positions = list_versions[-2]['boxes_positions']
+                        moving_sprites = pygame.sprite.Group()
+                        create_objects(moving_sprites, top_left_x, top_left_y, player)
+                        list_versions.pop()
 
         comandos =  pygame.key.get_pressed()
     
@@ -116,6 +140,10 @@ def exec_game():
             movimentos += player.move(-1, 0, 2)
         if comandos[pygame.K_RIGHT] or comandos[pygame.K_d]:
             movimentos += player.move(1, 0, 3)
+
+        if movimentos > movimentos_aux:
+            update_version(list_versions, player, top_left_x, top_left_y)
+            movimentos_aux += 1
 
         window.fill((0,0,0))
         window.blit(background, (0, 0))
@@ -130,12 +158,13 @@ def exec_game():
             run = False
 
         #Contagem do tempo e movimentos
-        time_and_moviment(movimentos, start_time, top_left_y)
+        time_and_moviment_and_title(movimentos, start_time, top_left_y)
 
         pygame.display.flip()
         clock.tick(7)
 
-    color = (255, 255, 0)        
+    color = (255, 255, 0)  
+    
 
 def main_menu():
     global color
@@ -148,9 +177,9 @@ def main_menu():
         window.blit(background, (0, 0))
         
         font = pygame.font.SysFont('Times New Roman', 100)
-        label = font.render('ROBOX', True, (255,255,255))
+        label = font.render('ROBOX', True, (30, 30, 30))
         window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 - 150))
-        label = font.render('FOREVER', True, (255,255,255))
+        label = font.render('FOREVER', True, (30, 30, 30))
         window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 + 30)) 
         
         for event in pygame.event.get():
@@ -172,7 +201,7 @@ def main_menu():
         pygame.display.update()
 
 def main():
-    global color, robot_position, boxes_positions, goal_positions, locked_positions, level, rect_level1, rect_level2, rect_level3, dimension
+    global color, title
     with open('levels.txt', 'r') as arq:
         file = arq.readlines()
 
@@ -187,17 +216,17 @@ def main():
 
         if color == (255, 255, 0):
            font = pygame.font.SysFont('Times New Roman', 60)
-           label = font.render('WELL', True, (255,255,255))
+           label = font.render('WELL', True, (30, 30, 30))
            window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 - 150)) 
-           label = font.render('CONGRATULATIONS', True, (255,255,255))
+           label = font.render('CONGRATULATIONS', True, (30, 30, 30))
            window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 - 50))
-           label = font.render('GENIUS!!!', True, (255,255,255))
+           label = font.render('GENIUS!!!', True, (30, 30, 30))
            window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 + 50))
 
         elif color == (0, 0, 160):
             font = pygame.font.SysFont('Times New Roman', 60)
-            label = font.render('SELECT LEVEL', True, (255,255,255))
-            window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 6 - 60))
+            label = font.render('SELECT LEVEL', True, (30, 30, 30))
+            window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), 80))
 
             i = 0
             for j in range(3):
@@ -217,6 +246,7 @@ def main():
                     if levels[0].collidepoint(mouse_position) and color == (0, 0, 160):
                         level = levels[1]
                         draw_levels(lista_dict, (levels[1]))
+                        title = levels[2]
                         exec_game()
 
             #Eventos associados a cada tecla quando o jogo não está rodando
@@ -239,6 +269,7 @@ def main():
                     #Caso em que há uma fase seguinte -> passa de fase
                     elif isinstance(level, int):
                         level += 1 
+                        title = 'LEVEL ' + str(level + 1)
                         draw_levels(lista_dict, level)
                         exec_game()
                 
