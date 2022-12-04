@@ -3,13 +3,14 @@ from game_classes import *
 
 S_WIDTH = 800
 S_HEIGHT = 700
+fonte_geral = 'fonts/Symtext.ttf'
 
 def select_level(level, position, window):
     dim = 80
     pos_x = position[0]*(S_WIDTH/5 - 20)-dim/2 + 120
     pos_y = position[1]*((S_HEIGHT - 300)/3) + dim + 150
     text = 'LEVEL ' + str(level + 1)
-    font = pygame.font.SysFont('Times New Roman', 15)
+    font = pygame.font.Font(fonte_geral, 15)
     label = font.render(text, True, (30, 30, 30))
     window.blit(label, ((pos_x + (dim - label.get_width())/2, pos_y - label.get_height())))
     rect_level = pygame.Rect(pos_x, pos_y, dim, dim)
@@ -19,8 +20,29 @@ def select_level(level, position, window):
 
     return (rect_level, level, text)
 
+def button_esc(window):
+    dim = 50
+    pos_x = 10
+    pos_y = 10
+    rect_level = pygame.Rect(pos_x, pos_y, dim, dim)
+
+    image_level = pygame.image.load('images/Esc.gif')
+    image_level = pygame.transform.smoothscale(image_level.convert_alpha(), (dim, dim))
+    window.blit(image_level, (pos_x, pos_y))
+    return rect_level
+
+def button_restart(window):
+    dim = 50
+    pos_x = 50
+    pos_y = 10
+    rect_level = pygame.Rect(pos_x, pos_y, dim, dim)
+    image_level = pygame.image.load('images/Restart.gif')
+    image_level = pygame.transform.smoothscale(image_level.convert_alpha(), (dim, dim))
+    window.blit(image_level, (pos_x, pos_y))
+    return rect_level
+
 def time_and_movement_and_title(movimentos, start_time, top_left_y, window, title):
-    font = pygame.font.SysFont('Times New Roman', 20)
+    font = pygame.font.Font(fonte_geral, 20)
     text = font.render(f'MOVIMENTOS: {movimentos}', True, (30, 30, 30))
     textRect = text.get_rect()
     textRect.center = (100, top_left_y)
@@ -31,7 +53,7 @@ def time_and_movement_and_title(movimentos, start_time, top_left_y, window, titl
     counting_rect = counting_text.get_rect()
     counting_rect.center = (650, top_left_y)
     window.blit(counting_text, counting_rect)
-    font = pygame.font.SysFont('Times New Roman', 60)
+    font = pygame.font.Font(fonte_geral, 60)
     label = font.render(title, True, (30, 30, 30))
     window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), 80))
 

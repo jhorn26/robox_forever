@@ -12,13 +12,15 @@ S_HEIGHT = 700
 
 background = pygame.image.load('images\\background.png')
 background = pygame.transform.scale(background, (800, 700))
+fonte_geral = 'fonts/Symtext.ttf'
 
 def exec_game(player_position, goal_positions, boxes_positions, walls_positions, walk_positions, dimension):
     global color
 
     #Imagem de fundo
     window.blit(background, (0, 0))
-
+    rect_esc = button_esc(window)
+    rect_restart = button_restart(window)
     #Centralização do mapa na tela
     top_left_x = (S_WIDTH - dimension[0][0]*30) // 2 - 20
     top_left_y = (S_HEIGHT - dimension[0][1]*30) // 2
@@ -65,6 +67,16 @@ def exec_game(player_position, goal_positions, boxes_positions, walls_positions,
                         create_objects(moving_sprites, top_left_x, top_left_y, player, goal_positions, boxes_positions, walls_positions, walk_positions)
                         list_versions.pop()
 
+            elif event.type == pygame.MOUSEBUTTONUP:
+                mouse_position = pygame.mouse.get_pos()
+                if rect_esc.collidepoint(mouse_position):
+                    color = (0, 0, 160)
+                    main()
+                    run = False
+                if rect_restart.collidepoint(mouse_position):
+                    boxes_positions = exec_game(player_position, goal_positions, boxes_positions, walls_positions,
+                                                walk_positions, dimension)
+                    run = False
         comandos =  pygame.key.get_pressed()
     
         #Movimento do jogador
@@ -81,8 +93,7 @@ def exec_game(player_position, goal_positions, boxes_positions, walls_positions,
             update_version(list_versions, player, top_left_x, top_left_y)
             movimentos_aux += 1
 
-        window.fill((0,0,0))
-        window.blit(background, (0, 0))
+
         
         moving_sprites.draw(window)
 
@@ -112,12 +123,15 @@ def main_menu():
     while run:
         window.fill(color)
         window.blit(background, (0, 0))
-        
-        font = pygame.font.SysFont('Times New Roman', 100)
-        label = font.render('ROBOX', True, (30, 30, 30))
-        window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 - 150))
-        label = font.render('FOREVER', True, (30, 30, 30))
-        window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 + 30)) 
+
+        font = pygame.font.Font(fonte_geral, 100)
+        label = font.render('ROBOX', True, (30,30,30))
+        window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 - 200))
+        label = font.render('FOREVER', True, (30,30,30))
+        window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 - 100))
+        font = pygame.font.Font(fonte_geral, 20)
+        label = font.render('Press SPACE to continue', True, (30,30,30))
+        window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 + 50))
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -152,16 +166,16 @@ def main():
         window.blit(background, (0, 0))
 
         if color == (255, 255, 0):
-           font = pygame.font.SysFont('Times New Roman', 60)
-           label = font.render('WELL DONE', True, (30, 30, 30))
-           window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 - 150)) 
+           font = pygame.font.Font(fonte_geral, 60)
+           label = font.render('WELL', True, (30, 30, 30))
+           window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 - 150))
            label = font.render('CONGRATULATIONS', True, (30, 30, 30))
            window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 - 50))
            label = font.render('GENIUS!!!', True, (30, 30, 30))
            window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 + 50))
 
         elif color == (0, 0, 160):
-            font = pygame.font.SysFont('Times New Roman', 60)
+            font = pygame.font.Font(fonte_geral, 60)
             label = font.render('SELECT LEVEL', True, (30, 30, 30))
             window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), 80))
 

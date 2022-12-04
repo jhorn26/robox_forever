@@ -17,6 +17,9 @@ class Robo(pygame.sprite.Sprite):
 
     def move(self, x_change, y_change, rot_number):
         box_moved = 0
+        audio_mover_box = pygame.mixer.Sound('sounds/box_move.wav')
+        audio_mover_robo = pygame.mixer.Sound('sounds/robo_move.wav')
+
         self.rotation = rot_number
         self.image = self.sprites[self.rotation]
         new_pos = (self.x + 30*x_change, self.y + 30*y_change) 
@@ -31,13 +34,15 @@ class Robo(pygame.sprite.Sprite):
                 #Caso em que a caixa não pode ser movida
                 if box.move(x_change, y_change, wall_pos) == False:
                     return box_moved
-                else: 
+                else:
+                    audio_mover_box.play()
                     box_moved = 1
 
         #Atualiza a posição
         self.x = new_pos[0]
         self.y = new_pos[1]
         self.rect.topleft = [self.x, self.y] # type: ignore
+        audio_mover_robo.play()
         return box_moved
 
 class Box(pygame.sprite.Sprite):
