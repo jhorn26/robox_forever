@@ -126,12 +126,12 @@ def main_menu():
         window.blit(background, (0, 0))
 
         font = pygame.font.Font(fonte_geral, 100)
-        label = font.render('ROBOX', True, (30,30,30))
+        label = font.render('ROBOX', True, (40, 40, 40))
         window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 - 200))
-        label = font.render('FOREVER', True, (30,30,30))
+        label = font.render('FOREVER', True, (15,15,15))
         window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 - 100))
         font = pygame.font.Font(fonte_geral, 20)
-        label = font.render('Press SPACE to continue', True, (30,30,30))
+        label = font.render('Press SPACE to continue', True, (10,10,10))
         window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 + 50))
         
         for event in pygame.event.get():
@@ -168,11 +168,11 @@ def main():
 
         if color == (255, 255, 0):
            font = pygame.font.Font(fonte_geral, 60)
-           label = font.render('WELL', True, (30, 30, 30))
-           window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 - 150))
-           label = font.render('CONGRATULATIONS', True, (30, 30, 30))
+           label = font.render('!!!CONGRATULATIONS!!!', True, (150, 150, 0))
            window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 - 50))
-           label = font.render('GENIUS!!!', True, (30, 30, 30))
+
+           font = pygame.font.Font(fonte_geral, 20)
+           label = font.render('Press SPACE to continue', True, (15, 15, 0))
            window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 + 50))
 
         elif color == (0, 0, 160):
