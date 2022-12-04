@@ -9,6 +9,9 @@ pygame.font.init()
 S_WIDTH = 800
 S_HEIGHT = 700
 
+background = pygame.image.load('images\\background.png')
+background = pygame.transform.scale(background, (800, 700))
+
 def select_level(level, position):
     dim = 80
     pos_x = position[0]*(S_WIDTH/5 - 20)-dim/2 + 120
@@ -18,7 +21,7 @@ def select_level(level, position):
     window.blit(label, ((pos_x + (dim - label.get_width())/2, pos_y - label.get_height())))
     rect_level = pygame.Rect(pos_x, pos_y, dim, dim)
     pygame.draw.rect( window, (0,0,0), rect_level)
-    image_level = pygame.image.load('images\\level1.png')
+    image_level = pygame.image.load('images\\level' + str(level + 1) + '.png')
     image_level = pygame.transform.scale(image_level, (dim, dim))
     window.blit(image_level, (pos_x, pos_y))
 
@@ -62,6 +65,9 @@ def create_objects(moving_sprites, top_left_x, top_left_y, player):
 
 def exec_game():
     global grid, r, g, b, color, movimentos
+
+    #Imagem de fundo
+    window.blit(background, (0, 0))
 
     #Centralização do mapa na tela
     top_left_x = (S_WIDTH - dimension[0][0]*30) // 2
@@ -112,6 +118,7 @@ def exec_game():
             movimentos += player.move(1, 0, 3)
 
         window.fill((0,0,0))
+        window.blit(background, (0, 0))
         
         moving_sprites.draw(window)
 
@@ -138,9 +145,10 @@ def main_menu():
     
     while run:
         window.fill(color)
+        window.blit(background, (0, 0))
         
         font = pygame.font.SysFont('Times New Roman', 100)
-        label = font.render('ROBLOX', True, (255,255,255))
+        label = font.render('ROBOX', True, (255,255,255))
         window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 - 150))
         label = font.render('FOREVER', True, (255,255,255))
         window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 + 30)) 
@@ -175,6 +183,8 @@ def main():
 
     while run:
         window.fill(color)
+        window.blit(background, (0, 0))
+
         if color == (255, 255, 0):
            font = pygame.font.SysFont('Times New Roman', 60)
            label = font.render('WELL', True, (255,255,255))
