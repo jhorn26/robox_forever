@@ -103,6 +103,7 @@ def exec_game(player_position, goal_positions, boxes_positions, walls_positions,
         diff = [x for x in box_pos if x not in goal_pos]
         if diff == []:
             run = False
+            pygame.mixer.Sound('./sounds/somdevitoria.wav').play()
 
         #Contagem do tempo e movimentos
         time_and_movement_and_title(movimentos, start_time, top_left_y, window, title)
@@ -242,6 +243,9 @@ def main():
 
         pygame.display.update()
 
+
+background_music = pygame.mixer.Sound('./sounds/somdefundo.wav')
+background_music.play(-1)
 window = pygame.display.set_mode((S_WIDTH, S_HEIGHT))
 pygame.display.set_caption("Sokoban")
 
