@@ -1,6 +1,7 @@
 import pygame
 import ast
 from game_classes import *
+from f_aux import *
 
 pygame.init()
 pygame.font.init()
@@ -12,70 +13,8 @@ S_HEIGHT = 700
 background = pygame.image.load('images\\background.png')
 background = pygame.transform.scale(background, (800, 700))
 
-def select_level(level, position):
-    dim = 80
-    pos_x = position[0]*(S_WIDTH/5 - 20)-dim/2 + 120
-    pos_y = position[1]*((S_HEIGHT - 300)/3) + dim + 150
-    text = 'LEVEL ' + str(level + 1)
-    font = pygame.font.SysFont('Times New Roman', 15)
-    label = font.render(text, True, (30, 30, 30))
-    window.blit(label, ((pos_x + (dim - label.get_width())/2, pos_y - label.get_height())))
-    rect_level = pygame.Rect(pos_x, pos_y, dim, dim)
-    image_level = pygame.image.load('images\\level' + str(level + 1) + '.png')
-    image_level = pygame.transform.scale(image_level, (dim, dim))
-    window.blit(image_level, (pos_x, pos_y))
-
-    return (rect_level, level, text)
-
-def draw_levels(lista_dict, level):
-    global player_position, boxes_positions, goal_positions, walls_positions, walk_positions, dimension
-
-    player_position = lista_dict[level]['robot_position']
-    boxes_positions = lista_dict[level]['boxes_positions']
-    goal_positions = lista_dict[level]['goal_positions']
-    walls_positions = lista_dict[level]['walls_positions']
-    walk_positions = lista_dict[level]['walk_positions']
-    dimension = lista_dict[level]['dimension']
-
-def time_and_moviment_and_title(movimentos, start_time, top_left_y):
-    font = pygame.font.SysFont('Times New Roman', 20)
-    text = font.render(f'MOVIMENTOS: {movimentos}', True, (30, 30, 30))
-    textRect = text.get_rect()
-    textRect.center = (100, top_left_y)
-    window.blit(text, textRect)
-    counting_time = pygame.time.get_ticks() - start_time
-    counting_seconds = str( round((counting_time)/1000) ).zfill(1)
-    counting_text = font.render(f'TIMER: {counting_seconds}', True, (30, 30, 30))
-    counting_rect = counting_text.get_rect()
-    counting_rect.center = (650, top_left_y)
-    window.blit(counting_text, counting_rect)
-    font = pygame.font.SysFont('Times New Roman', 60)
-    label = font.render(title, True, (30, 30, 30))
-    window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), 80))
-
-def create_objects(moving_sprites, top_left_x, top_left_y, player):
-    #Cria os objetos em suas respectivas categorias
-    for cat in [[walk_positions, Walk], [walls_positions, Wall], [goal_positions, Goal], [boxes_positions, Box]]:
-        #Retira todos os objetos possivelmente existentes na categoria
-        if cat[1] is not Walk:
-            cat[1].objects.clear()
-        #Adiciona os objetos
-        for block in cat[0]:
-            object = cat[1](block[0]*30 + top_left_x, block[1]*30 + top_left_y)
-            moving_sprites.add(object)
-    moving_sprites.add(player)
-    return moving_sprites
-
-def update_version(list_versions, player, top_left_x, top_left_y):
-    dict = {}
-    dict['robot_position'] = [(int((player.x - top_left_x)/30), int((player.y - top_left_y)/30))]
-    dict['boxes_positions'] = [(int((box.x - top_left_x)/30), int((box.y - top_left_y)/30)) for box in Box.objects]
-    
-    list_versions.append(dict)
-
-
-def exec_game():
-    global color, boxes_positions
+def exec_game(player_position, goal_positions, boxes_positions, walls_positions, walk_positions, dimension):
+    global color
 
     #Imagem de fundo
     window.blit(background, (0, 0))
@@ -87,7 +26,7 @@ def exec_game():
     player = Robo(player_position[0][0]*30 + top_left_x, player_position[0][1]*30 + top_left_y)
 
     #Criação dos objetos 
-    moving_sprites = create_objects(moving_sprites, top_left_x, top_left_y, player)
+    moving_sprites = create_objects(moving_sprites, top_left_x, top_left_y, player, goal_positions, boxes_positions, walls_positions, walk_positions)
 
     #Inicialização do relógio e contador de movimentos
     clock = pygame.time.Clock()
@@ -103,7 +42,6 @@ def exec_game():
         #Tratamento de eventos (teclas para sair do jogo)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                print(moving_sprites)
                 run = False
                 pygame.display.quit()
                 quit()
@@ -113,7 +51,7 @@ def exec_game():
                     pygame.display.quit()
                     quit()
                 elif event.key == pygame.K_r:
-                    exec_game()
+                    boxes_positions = exec_game(player_position, goal_positions, boxes_positions, walls_positions, walk_positions, dimension)
                     run = False
                 elif event.key == pygame.K_ESCAPE:
                     color = (0, 0, 160)
@@ -121,12 +59,10 @@ def exec_game():
                     run = False
                 elif event.key == pygame.K_z:
                     if len(list_versions) > 1:
-                        print(list_versions)
-                        print(movimentos)
                         player = Robo(list_versions[-2]['robot_position'][0][0]*30 + top_left_x, list_versions[-2]['robot_position'][0][1]*30 + top_left_y)
                         boxes_positions = list_versions[-2]['boxes_positions']
                         moving_sprites = pygame.sprite.Group()
-                        create_objects(moving_sprites, top_left_x, top_left_y, player)
+                        create_objects(moving_sprites, top_left_x, top_left_y, player, goal_positions, boxes_positions, walls_positions, walk_positions)
                         list_versions.pop()
 
         comandos =  pygame.key.get_pressed()
@@ -158,13 +94,14 @@ def exec_game():
             run = False
 
         #Contagem do tempo e movimentos
-        time_and_moviment_and_title(movimentos, start_time, top_left_y)
+        time_and_movement_and_title(movimentos, start_time, top_left_y, window, title)
 
         pygame.display.flip()
         clock.tick(7)
 
     color = (255, 255, 0)  
-    
+    if run == False:
+        return boxes_positions
 
 def main_menu():
     global color
@@ -216,7 +153,7 @@ def main():
 
         if color == (255, 255, 0):
            font = pygame.font.SysFont('Times New Roman', 60)
-           label = font.render('WELL', True, (30, 30, 30))
+           label = font.render('WELL DONE', True, (30, 30, 30))
            window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 - 150)) 
            label = font.render('CONGRATULATIONS', True, (30, 30, 30))
            window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 - 50))
@@ -231,7 +168,7 @@ def main():
             i = 0
             for j in range(3):
                 for k in range(5):
-                    menu.append(select_level(i, (k, j)))
+                    menu.append(select_level(i, (k, j), window))
                     i += 1
            
         for event in pygame.event.get():
@@ -245,9 +182,14 @@ def main():
                 for levels in menu:
                     if levels[0].collidepoint(mouse_position) and color == (0, 0, 160):
                         level = levels[1]
-                        draw_levels(lista_dict, (levels[1]))
+                        player_position = lista_dict[level]['robot_position']
+                        boxes_positions = lista_dict[level]['boxes_positions']
+                        goal_positions = lista_dict[level]['goal_positions']
+                        walls_positions = lista_dict[level]['walls_positions']
+                        walk_positions = lista_dict[level]['walk_positions']
+                        dimension = lista_dict[level]['dimension']
                         title = levels[2]
-                        exec_game()
+                        boxes_positions = exec_game(player_position, goal_positions, boxes_positions, walls_positions, walk_positions, dimension)
 
             #Eventos associados a cada tecla quando o jogo não está rodando
             elif event.type == pygame.KEYDOWN:
@@ -257,7 +199,7 @@ def main():
                     quit()
 
                 elif event.key == pygame.K_r:
-                    exec_game()
+                    boxes_positions = exec_game(player_position, goal_positions, boxes_positions, walls_positions, walk_positions, dimension)
                 
                 #Tecla para passagem de fase
                 elif event.key == pygame.K_SPACE:
@@ -270,8 +212,14 @@ def main():
                     elif isinstance(level, int):
                         level += 1 
                         title = 'LEVEL ' + str(level + 1)
-                        draw_levels(lista_dict, level)
-                        exec_game()
+                        player_position = lista_dict[level]['robot_position']
+                        boxes_positions = lista_dict[level]['boxes_positions']
+                        goal_positions = lista_dict[level]['goal_positions']
+                        walls_positions = lista_dict[level]['walls_positions']
+                        walk_positions = lista_dict[level]['walk_positions']
+                        dimension = lista_dict[level]['dimension']
+
+                        boxes_positions = exec_game(player_position, goal_positions, boxes_positions, walls_positions, walk_positions, dimension)
                 
                 elif event.key == pygame.K_ESCAPE:
                     color = (0, 0, 160)
