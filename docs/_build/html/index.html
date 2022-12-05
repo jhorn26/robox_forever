@@ -1,0 +1,855 @@
+
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Welcome to Robox Forever’s documentation! &#8212; documentação Robox Forever 1.0.0</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Buscar" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="welcome-to-robox-forever-s-documentation">
+<h1>Welcome to Robox Forever’s documentation!<a class="headerlink" href="#welcome-to-robox-forever-s-documentation" title="Link permanente para este cabeçalho">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link permanente para este cabeçalho">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Índice</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Índice do Módulo</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Página de Busca</span></a></p></li>
+</ul>
+</section>
+<section id="module-final">
+<span id="documentacao-das-definicoes"></span><h1>Documentação das definições<a class="headerlink" href="#module-final" title="Link permanente para este cabeçalho">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="final.Button">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">final.</span></span><span class="sig-name descname"><span class="pre">Button</span></span><a class="headerlink" href="#final.Button" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Classe dos botões</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>int: número da fase selecionada</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="final.Button.event_treatment">
+<span class="sig-name descname"><span class="pre">event_treatment</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#final.Button.event_treatment" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Trata os eventos do input referentes ao Button.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>int: retorna o número da fase escolhida</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="final.Game">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">final.</span></span><span class="sig-name descname"><span class="pre">Game</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#final.Game" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Roda o jogo e manipula as demais classes.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="final.Game.event_treatment">
+<span class="sig-name descname"><span class="pre">event_treatment</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#final.Game.event_treatment" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Trata os eventos do input.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="final.Game.loop">
+<span class="sig-name descname"><span class="pre">loop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#final.Game.loop" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Responsável por efetivamente rodar o jogo dentro de seu loop interno.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="final.Level">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">final.</span></span><span class="sig-name descname"><span class="pre">Level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#final.Level" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Cria, manipula e renderiza as fases (levels) do jogo.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="final.Level.create_level">
+<span class="sig-name descname"><span class="pre">create_level</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#final.Level.create_level" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Cria os sprite da fase selecionada</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="final.Level.create_positions">
+<span class="sig-name descname"><span class="pre">create_positions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#final.Level.create_positions" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Define as posições dos objetos (sprites) da fase selecionada.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="final.Level.run_level">
+<span class="sig-name descname"><span class="pre">run_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Surface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">background</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Surface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">screen</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#final.Level.run_level" title="Link permanente para esta definição">¶</a></dt>
+<dd><dl class="simple">
+<dt>Args:</dt><dd><p>window (pygame.Surface): janela de execução do jogo
+background (pygame.Surface): imagem de fundo
+screen (Screen): objeto do tipo screen, cria o layout da tela</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: informação de qual screen está sendo executada (tela inicial, jogo, tela de vitória etc)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="final.Screen">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">final.</span></span><span class="sig-name descname"><span class="pre">Screen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Surface</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#final.Screen" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Classe das telas exibidas durante o jogo (tela da fase, tela inicial, tela de vitória)</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="final.Screen.front_page">
+<span class="sig-name descname"><span class="pre">front_page</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#final.Screen.front_page" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Renderiza a tela inicial do jogo.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="final.Screen.game">
+<span class="sig-name descname"><span class="pre">game</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">movimentos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_left_y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#final.Screen.game" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Renderiza os textos da tela da fase sendo jogada.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>movimentos (int): quantidade de vezes de o jogador moveu uma caixa
+start_time (int): tempo inicial da fase
+top_left_y (int): ordenada do canto superior do mapa da fase
+level (int): número da fase selecionada</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="final.Screen.select_level">
+<span class="sig-name descname"><span class="pre">select_level</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#final.Screen.select_level" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Renderiza a tela de seleção de fase.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="final.Screen.victory">
+<span class="sig-name descname"><span class="pre">victory</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#final.Screen.victory" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Renderiza a tela de vitória.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="final.convert_coordinates">
+<span class="sig-prename descclassname"><span class="pre">final.</span></span><span class="sig-name descname"><span class="pre">convert_coordinates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#final.convert_coordinates" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Converte as coordenadas do formato recebido no arquivo levels.txt para o utilizado no jogo</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>position (tuple[int,int]): coordenadas de posição no formato do arquivo levels.txt
+x (int): constante para shiftar a posição no eixo horizontal
+y (int): constante para shiftar a posição no eixo vertical</p>
+</dd>
+<dt>Returns:</dt><dd><p>tuple[int,int]: coordenadas de posição no formato do jogo</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-sprites"></span><dl class="py class">
+<dt class="sig sig-object py" id="sprites.Box">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sprites.</span></span><span class="sig-name descname"><span class="pre">Box</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sprites.Box" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Classe das caixas</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>pygame (pygame.sprite.Sprite): Sprites do jogo</p>
+</dd>
+<dt>Returns:</dt><dd><p>bool: caixa movida/caixa em posição-alvo</p>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="sprites.Box.in_goal">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">in_goal</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#sprites.Box.in_goal" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Informa se a caixa encontra-se em uma posição-alvo e, caso esteja, troca sua imagem.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>bool: informa se a caixa encontra-se em uma posição-alvo (True caso afirmativo)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sprites.Box.move">
+<span class="sig-name descname"><span class="pre">move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_change</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_change</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wall_pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#sprites.Box.move" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Realiza os movimentos da caixa. É chamado apenas quando o robô se move na direção de uma caixa.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>x_change (int): parâmetro que define se a caixa vai se mover ao longo do eixo horizontal e em que sentido ele fará isso (0 = não se move, 1 = move uma casa para a direita, -1 = move uma casa para a esquerda)
+y_change (int): parâmetro que define se a caixa vai se mover ao longo do eixo vertical e em que sentido ele fará isso (0 = não se move, 1 = move uma casa para baixo, -1 = move uma casa para cima)
+wall_pos (list[tuple[int,int]]): lista de posições de sprites de muro na fase.</p>
+</dd>
+<dt>Returns:</dt><dd><p>bool: booleano que informa se a caixa se moveu. É falso no caso em que a posição de destino da caixa é uma parede ou outra caixa.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sprites.Floor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sprites.</span></span><span class="sig-name descname"><span class="pre">Floor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sprites.Floor" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Classe do piso (chão)</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>pygame (pygame.sprite.Sprite): Sprite de classe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sprites.Goal">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sprites.</span></span><span class="sig-name descname"><span class="pre">Goal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sprites.Goal" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Classe das posições-alvo (locais onde as caixas devem ser colocadas)</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>pygame (pygame.sprite.Sprite): Sprite da classe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sprites.Robot">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sprites.</span></span><span class="sig-name descname"><span class="pre">Robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sprites.Robot" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Classe do robô (jogador)</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>pygame (_type_): _description_</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="sprites.Robot.move">
+<span class="sig-name descname"><span class="pre">move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_change</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_change</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rot_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#sprites.Robot.move" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Realiza os movimentos do robô e verifica se ele moveu uma caixa (Box) (caso afirmativo, chama a função de movimento da caixa)</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>x_change (int): parâmetro que define se o robô vai se mover ao longo do eixo horizontal e em que sentido ele fará isso (0 = não se move, 1 = move uma casa para a direita, -1 = move uma casa para a esquerda)
+y_change (int): parâmetro que define se o robô vai se mover ao longo do eixo vertical e em que sentido ele fará isso (0 = não se move, 1 = move uma casa para baixo, -1 = move uma casa para cima)
+rot_number (int): parâmetro que define a rotação da imagem do robô (0 = voltado para cima, 1 = rotaciona 90º em sentido horário, 2 = rotaciona 180º em sentido horário, 3 = rotaciona 270º em sentido horário).</p>
+</dd>
+<dt>Returns:</dt><dd><p>int: inteiro que informa se o robô moveu uma caixa ao se mover (0 = não moveu, 1 = moveu).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sprites.Robot.robot_event_treatment">
+<span class="sig-name descname"><span class="pre">robot_event_treatment</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#sprites.Robot.robot_event_treatment" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Trata os eventos do input referentes ao robô.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>int: inteiro que informa se o robô moveu uma caixa (0 = não moveu, 1 = moveu).</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sprites.Wall">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sprites.</span></span><span class="sig-name descname"><span class="pre">Wall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sprites.Wall" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Classe dos muros (paredes)</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>pygame (pygame.sprite.Sprite): Sprite da classe</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="codigo-fonte">
+<h1>Código-fonte<a class="headerlink" href="#codigo-fonte" title="Link permanente para este cabeçalho">¶</a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygame</span>
+<span class="kn">import</span> <span class="nn">ast</span>
+<span class="kn">from</span> <span class="nn">sprites</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+<span class="k">class</span> <span class="nc">Game</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Roda o jogo e manipula as demais classes.</span>
+<span class="sd">    &quot;&quot;&quot;</span>    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :Inicializa a classe Game:</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            size (tuple[int,int]): dimensões da janela do jogo.</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        <span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">background</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;images</span><span class="se">\\</span><span class="s1">background.png&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">background</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">smoothscale</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">background</span><span class="o">.</span><span class="n">convert_alpha</span><span class="p">(),</span> <span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">700</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">level</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">screen</span> <span class="o">=</span> <span class="s2">&quot;INITIAL&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">run</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">page</span> <span class="o">=</span> <span class="s2">&quot;INITIAL&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">background_music</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">mixer</span><span class="o">.</span><span class="n">Sound</span><span class="p">(</span><span class="s2">&quot;sounds</span><span class="se">\\</span><span class="s2">som_de_fundo.wav&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">background_music</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">event_treatment</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  
+        <span class="sd">&quot;&quot;&quot;Trata os eventos do input.</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">QUIT</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">run</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">KEYDOWN</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">K_SPACE</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">page</span> <span class="o">==</span> <span class="s2">&quot;INITIAL&quot;</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">page</span> <span class="o">=</span> <span class="s2">&quot;SELECT&quot;</span>
+                <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">K_SPACE</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">page</span> <span class="o">==</span> <span class="s2">&quot;VICTORY&quot;</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">page</span> <span class="o">=</span> <span class="s2">&quot;PLAYING&quot;</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">level</span> <span class="o">&lt;</span> <span class="mi">14</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">level</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">page</span> <span class="o">=</span> <span class="s2">&quot;SELECT&quot;</span>
+
+                <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">K_q</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">run</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">loop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Responsável por efetivamente rodar o jogo dentro de seu loop interno.</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">screen</span> <span class="o">=</span> <span class="n">Screen</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">()</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">background</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">event_treatment</span><span class="p">()</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">page</span> <span class="o">==</span> <span class="s2">&quot;INITIAL&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">front_page</span><span class="p">()</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">page</span> <span class="o">==</span> <span class="s2">&quot;SELECT&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">select_level</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">level</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">event_treatment</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">run</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">run</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">level</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+                    <span class="n">L</span> <span class="o">=</span> <span class="n">Level</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">level</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">page</span> <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="n">run_level</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">background</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">screen</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">page</span> <span class="o">==</span> <span class="s2">&quot;PLAYING&quot;</span><span class="p">:</span>
+                <span class="n">L</span> <span class="o">=</span> <span class="n">Level</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">level</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">page</span> <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="n">run_level</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">background</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">screen</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">page</span> <span class="o">==</span> <span class="s2">&quot;VICTORY&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">victory</span><span class="p">()</span>
+            <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">flip</span><span class="p">()</span>
+            
+
+<span class="k">class</span> <span class="nc">Level</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Cria, manipula e renderiza as fases (levels) do jogo.</span>
+<span class="sd">    &quot;&quot;&quot;</span>    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Inicializa a classe Level.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            level (int): número da fase selecionada</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">level</span> <span class="o">=</span> <span class="n">level</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">moving_sprites</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">sprite</span><span class="o">.</span><span class="n">Group</span><span class="p">()</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;levels.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">arq</span><span class="p">:</span>
+            <span class="n">file</span> <span class="o">=</span> <span class="n">arq</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">all_levels_info</span> <span class="o">=</span> <span class="p">[</span><span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">create_positions</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">top_left_x</span> <span class="o">=</span> <span class="p">(</span><span class="mi">800</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">dimension</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">30</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">20</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">top_left_y</span> <span class="o">=</span> <span class="p">(</span><span class="mi">700</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">dimension</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">30</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">create_level</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">level_running</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">create_positions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Define as posições dos objetos (sprites) da fase selecionada.</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">player_position</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_levels_info</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">level</span><span class="p">][</span><span class="s1">&#39;robot_position&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">boxes_positions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_levels_info</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">level</span><span class="p">][</span><span class="s1">&#39;boxes_positions&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">goal_positions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_levels_info</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">level</span><span class="p">][</span><span class="s1">&#39;goal_positions&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">walls_positions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_levels_info</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">level</span><span class="p">][</span><span class="s1">&#39;walls_positions&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">walk_positions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_levels_info</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">level</span><span class="p">][</span><span class="s1">&#39;walk_positions&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dimension</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_levels_info</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">level</span><span class="p">][</span><span class="s1">&#39;dimension&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">create_level</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Cria os sprite da fase selecionada</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        <span class="c1">#Cria os objetos em suas respectivas categorias</span>
+        <span class="k">for</span> <span class="n">tipo</span> <span class="ow">in</span> <span class="p">[[</span><span class="bp">self</span><span class="o">.</span><span class="n">walk_positions</span><span class="p">,</span> <span class="n">Floor</span><span class="p">],</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">walls_positions</span><span class="p">,</span> <span class="n">Wall</span><span class="p">],</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">goal_positions</span><span class="p">,</span> <span class="n">Goal</span><span class="p">],</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">boxes_positions</span><span class="p">,</span> <span class="n">Box</span><span class="p">]]:</span>
+            <span class="c1">#Retira todos os objetos possivelmente existentes na categoria</span>
+            <span class="n">tipo</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+            <span class="c1">#Adiciona os objetos</span>
+            <span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">tipo</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="nb">object</span> <span class="o">=</span> <span class="n">tipo</span><span class="p">[</span><span class="mi">1</span><span class="p">](</span><span class="n">convert_coordinates</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">top_left_x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">top_left_y</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">moving_sprites</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">player</span> <span class="o">=</span> <span class="n">Robot</span><span class="p">(</span><span class="n">convert_coordinates</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">player_position</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">top_left_x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">top_left_y</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">moving_sprites</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">run_level</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">window</span><span class="p">:</span><span class="n">pygame</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">background</span><span class="p">:</span><span class="n">pygame</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">screen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            window (pygame.Surface): janela de execução do jogo</span>
+<span class="sd">            background (pygame.Surface): imagem de fundo</span>
+<span class="sd">            screen (Screen): objeto do tipo screen, cria o layout da tela</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: informação de qual screen está sendo executada (tela inicial, jogo, tela de vitória etc)</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        <span class="n">clock</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">Clock</span><span class="p">()</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">get_ticks</span><span class="p">()</span>
+        <span class="n">movimentos</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">level_running</span><span class="p">:</span>
+            <span class="n">window</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">background</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+            <span class="n">screen</span><span class="o">.</span><span class="n">game</span><span class="p">(</span><span class="n">movimentos</span><span class="p">,</span> <span class="n">start_time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">top_left_y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">level</span><span class="p">)</span>
+            <span class="n">movimentos</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">robot_event_treatment</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">moving_sprites</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">QUIT</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">level_running</span> <span class="o">=</span> <span class="kc">False</span>
+                    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+                    <span class="n">quit</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">KEYDOWN</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">K_q</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">level_running</span> <span class="o">=</span> <span class="kc">False</span>
+                        <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+                        <span class="n">quit</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">K_ESCAPE</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">level_running</span> <span class="o">=</span> <span class="kc">False</span>
+                        <span class="k">return</span> <span class="s2">&quot;SELECT&quot;</span>
+                    <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">K_r</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">create_positions</span><span class="p">()</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">create_level</span><span class="p">()</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">run_level</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">background</span><span class="p">,</span> <span class="n">screen</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">level_running</span> <span class="o">=</span> <span class="kc">False</span>
+
+                <span class="k">if</span> <span class="nb">all</span><span class="p">([</span><span class="n">box</span><span class="o">.</span><span class="n">in_goal</span> <span class="k">for</span> <span class="n">box</span> <span class="ow">in</span> <span class="n">Box</span><span class="o">.</span><span class="n">objects</span><span class="p">]):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">level_running</span> <span class="o">=</span> <span class="kc">False</span>
+                    <span class="n">pygame</span><span class="o">.</span><span class="n">mixer</span><span class="o">.</span><span class="n">Sound</span><span class="p">(</span><span class="s2">&quot;sounds</span><span class="se">\\</span><span class="s2">som_de_vitoria.wav&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">play</span><span class="p">()</span>
+                    <span class="k">return</span> <span class="s2">&quot;VICTORY&quot;</span>
+
+            <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">flip</span><span class="p">()</span>
+            <span class="n">clock</span><span class="o">.</span><span class="n">tick</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Screen</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Classe das telas exibidas durante o jogo (tela da fase, tela inicial, tela de vitória)</span>
+<span class="sd">    &quot;&quot;&quot;</span>    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">window</span><span class="p">:</span><span class="n">pygame</span><span class="o">.</span><span class="n">Surface</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Inicializa objeto da classe Screen.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            window (pygame.Surface): _description_</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="n">window</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">font</span> <span class="o">=</span> <span class="s1">&#39;fonts/Symtext.ttf&#39;</span>
+
+    <span class="k">def</span> <span class="nf">front_page</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Renderiza a tela inicial do jogo.</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        <span class="n">font</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="s1">&#39;ROBOX&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">200</span><span class="p">))</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="s1">&#39;FOREVER&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">100</span><span class="p">))</span>
+        
+        <span class="n">font</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="s1">&#39;Press SPACE to continue&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">50</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">select_level</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Renderiza a tela de seleção de fase.</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        <span class="n">font</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="s1">&#39;SELECT LEVEL&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">80</span><span class="p">))</span>
+
+        <span class="n">level</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+                <span class="n">dim</span> <span class="o">=</span> <span class="mi">80</span>
+                <span class="n">pos_x</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="o">/</span><span class="mi">5</span> <span class="o">-</span> <span class="mi">20</span><span class="p">)</span><span class="o">-</span><span class="n">dim</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">120</span>
+                <span class="n">pos_y</span> <span class="o">=</span> <span class="n">y</span><span class="o">*</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">-</span> <span class="mi">300</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">dim</span> <span class="o">+</span> <span class="mi">150</span>
+                <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;LEVEL &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">level</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">font</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+                <span class="n">text</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="p">((</span><span class="n">pos_x</span> <span class="o">+</span> <span class="p">(</span><span class="n">dim</span> <span class="o">-</span> <span class="n">text</span><span class="o">.</span><span class="n">get_width</span><span class="p">())</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">pos_y</span> <span class="o">-</span> <span class="n">text</span><span class="o">.</span><span class="n">get_height</span><span class="p">())))</span>
+                <span class="n">rect_level</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">pos_x</span><span class="p">,</span> <span class="n">pos_y</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">dim</span><span class="p">)</span>
+                <span class="n">image_level</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;images</span><span class="se">\\</span><span class="s1">level&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">level</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.png&#39;</span><span class="p">)</span>
+                <span class="n">image_level</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">smoothscale</span><span class="p">(</span><span class="n">image_level</span><span class="o">.</span><span class="n">convert_alpha</span><span class="p">(),</span> <span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="n">dim</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">image_level</span><span class="p">,</span> <span class="p">(</span><span class="n">pos_x</span><span class="p">,</span> <span class="n">pos_y</span><span class="p">))</span>
+       
+                <span class="n">Button</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rect_level</span><span class="p">)</span>
+                <span class="n">level</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">game</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">movimentos</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">start_time</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">top_left_y</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Renderiza os textos da tela da fase sendo jogada.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            movimentos (int): quantidade de vezes de o jogador moveu uma caixa</span>
+<span class="sd">            start_time (int): tempo inicial da fase</span>
+<span class="sd">            top_left_y (int): ordenada do canto superior do mapa da fase</span>
+<span class="sd">            level (int): número da fase selecionada</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        <span class="n">title</span> <span class="o">=</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;LEVEL &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">level</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">font</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;MOVIMENTOS: </span><span class="si">{</span><span class="n">movimentos</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+        <span class="n">textRect</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">get_rect</span><span class="p">()</span>
+        <span class="n">textRect</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">top_left_y</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">textRect</span><span class="p">)</span>
+        <span class="n">counting_time</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">get_ticks</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+        <span class="n">counting_seconds</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span> <span class="nb">round</span><span class="p">((</span><span class="n">counting_time</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span> <span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">counting_text</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;TIMER: </span><span class="si">{</span><span class="n">counting_seconds</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+        <span class="n">counting_rect</span> <span class="o">=</span> <span class="n">counting_text</span><span class="o">.</span><span class="n">get_rect</span><span class="p">()</span>
+        <span class="n">counting_rect</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="p">(</span><span class="mi">650</span><span class="p">,</span> <span class="n">top_left_y</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">counting_text</span><span class="p">,</span> <span class="n">counting_rect</span><span class="p">)</span>
+        <span class="n">font</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">80</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">victory</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Renderiza a tela de vitória.</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        <span class="n">font</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="s1">&#39;CONGRATULATIONS!!!&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="p">(</span><span class="n">label</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">50</span><span class="p">))</span>
+
+        <span class="n">font</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="s1">&#39;Press SPACE to continue&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="p">(</span><span class="n">label</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">50</span><span class="p">))</span>
+
+
+<span class="k">class</span> <span class="nc">Button</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Classe dos botões</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int: número da fase selecionada</span>
+<span class="sd">    &quot;&quot;&quot;</span>    
+    <span class="n">objects</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Inicializa objeto da classe Button</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">run</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">def</span> <span class="nf">event_treatment</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Trata os eventos do input referentes ao Button.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: retorna o número da fase escolhida</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">QUIT</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">run</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">KEYDOWN</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">K_q</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">run</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">MOUSEBUTTONUP</span><span class="p">:</span>
+                <span class="n">mouse_position</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">mouse</span><span class="o">.</span><span class="n">get_pos</span><span class="p">()</span> 
+                <span class="k">for</span> <span class="n">button</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">objects</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">button</span><span class="o">.</span><span class="n">collidepoint</span><span class="p">(</span><span class="n">mouse_position</span><span class="p">):</span>
+                        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">button</span><span class="p">)</span>
+    
+
+<span class="k">def</span> <span class="nf">convert_coordinates</span><span class="p">(</span><span class="n">position</span><span class="p">:</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">],</span> <span class="n">x</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Converte as coordenadas do formato recebido no arquivo levels.txt para o utilizado no jogo</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        position (tuple[int,int]): coordenadas de posição no formato do arquivo levels.txt</span>
+<span class="sd">        x (int): constante para shiftar a posição no eixo horizontal</span>
+<span class="sd">        y (int): constante para shiftar a posição no eixo vertical</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple[int,int]: coordenadas de posição no formato do jogo</span>
+<span class="sd">    &quot;&quot;&quot;</span>    
+    <span class="k">return</span> <span class="p">((</span><span class="n">position</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">30</span> <span class="o">+</span> <span class="n">x</span><span class="p">,</span> <span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">30</span> <span class="o">+</span> <span class="n">y</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">Game</span><span class="p">((</span><span class="mi">800</span><span class="p">,</span> <span class="mi">700</span><span class="p">))</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">loop</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygame</span>
+
+
+<span class="k">class</span> <span class="nc">Robot</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">sprite</span><span class="o">.</span><span class="n">Sprite</span><span class="p">):</span>    
+    <span class="sd">&quot;&quot;&quot;Classe do robô (jogador)</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        pygame (_type_): _description_</span>
+<span class="sd">    &quot;&quot;&quot;</span>    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  
+        <span class="sd">&quot;&quot;&quot;Inicializa sprite do robô.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            position (tuple[int,int]): posição inicial do robô.</span>
+<span class="sd">        &quot;&quot;&quot;</span>              
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sprites</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;images</span><span class="se">\\</span><span class="s1">player_up.png&#39;</span><span class="p">,</span> <span class="s1">&#39;images</span><span class="se">\\</span><span class="s1">player_down.png&#39;</span><span class="p">,</span> <span class="s1">&#39;images</span><span class="se">\\</span><span class="s1">player_left.png&#39;</span><span class="p">,</span> <span class="s1">&#39;images</span><span class="se">\\</span><span class="s1">player_right.png&#39;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sprites</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">image</span><span class="p">),</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">position</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rotation</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sprites</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">rotation</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rect</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">get_rect</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">topleft</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+
+    <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_change</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">y_change</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">rot_number</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>       
+        <span class="sd">&quot;&quot;&quot;Realiza os movimentos do robô e verifica se ele moveu uma caixa (Box) (caso afirmativo, chama a função de movimento da caixa)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            x_change (int): parâmetro que define se o robô vai se mover ao longo do eixo horizontal e em que sentido ele fará isso (0 = não se move, 1 = move uma casa para a direita, -1 = move uma casa para a esquerda)</span>
+<span class="sd">            y_change (int): parâmetro que define se o robô vai se mover ao longo do eixo vertical e em que sentido ele fará isso (0 = não se move, 1 = move uma casa para baixo, -1 = move uma casa para cima)</span>
+<span class="sd">            rot_number (int): parâmetro que define a rotação da imagem do robô (0 = voltado para cima, 1 = rotaciona 90º em sentido horário, 2 = rotaciona 180º em sentido horário, 3 = rotaciona 270º em sentido horário). </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            int: inteiro que informa se o robô moveu uma caixa ao se mover (0 = não moveu, 1 = moveu).</span>
+<span class="sd">        &quot;&quot;&quot;</span>         
+        <span class="bp">self</span><span class="o">.</span><span class="n">rotation</span> <span class="o">=</span> <span class="n">rot_number</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sprites</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">rotation</span><span class="p">]</span>
+        <span class="n">new_pos</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">30</span><span class="o">*</span><span class="n">x_change</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">30</span><span class="o">*</span><span class="n">y_change</span><span class="p">)</span> 
+        <span class="n">box_moved</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">wall_pos</span> <span class="o">=</span> <span class="p">[</span><span class="n">wall</span><span class="o">.</span><span class="n">position</span> <span class="k">for</span> <span class="n">wall</span> <span class="ow">in</span> <span class="n">Wall</span><span class="o">.</span><span class="n">objects</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">new_pos</span> <span class="ow">in</span> <span class="n">wall_pos</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">box_moved</span> 
+        <span class="c1">#Verifica se o movimento é na direção de uma caixa, e se ela pode ser movida</span>
+        <span class="k">for</span> <span class="n">box</span> <span class="ow">in</span> <span class="n">Box</span><span class="o">.</span><span class="n">objects</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">box</span><span class="o">.</span><span class="n">position</span> <span class="o">==</span> <span class="n">new_pos</span><span class="p">:</span>
+                <span class="c1">#Caso em que a caixa não pode ser movida</span>
+                <span class="k">if</span> <span class="n">box</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">x_change</span><span class="p">,</span> <span class="n">y_change</span><span class="p">,</span> <span class="n">wall_pos</span><span class="p">)</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">box_moved</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">box_moved</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="c1">#Atualiza a posição</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">new_pos</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">topleft</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="c1"># type: ignore</span>
+        <span class="n">pygame</span><span class="o">.</span><span class="n">mixer</span><span class="o">.</span><span class="n">Sound</span><span class="p">(</span><span class="s2">&quot;sounds</span><span class="se">\\</span><span class="s2">robo_move.wav&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">play</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">box_moved</span>
+
+    <span class="k">def</span> <span class="nf">robot_event_treatment</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Trata os eventos do input referentes ao robô.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: inteiro que informa se o robô moveu uma caixa (0 = não moveu, 1 = moveu).</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        <span class="n">comandos</span> <span class="o">=</span>  <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">get_pressed</span><span class="p">()</span>
+        <span class="n">moved</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">comandos</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_UP</span><span class="p">]</span> <span class="ow">or</span> <span class="n">comandos</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_w</span><span class="p">]:</span>
+            <span class="n">moved</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">comandos</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_DOWN</span><span class="p">]</span> <span class="ow">or</span> <span class="n">comandos</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_s</span><span class="p">]:</span>
+            <span class="n">moved</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">comandos</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_LEFT</span><span class="p">]</span> <span class="ow">or</span> <span class="n">comandos</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_a</span><span class="p">]:</span>
+            <span class="n">moved</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">comandos</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_RIGHT</span><span class="p">]</span> <span class="ow">or</span> <span class="n">comandos</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_d</span><span class="p">]:</span>
+            <span class="n">moved</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">moved</span>
+
+
+<span class="k">class</span> <span class="nc">Box</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">sprite</span><span class="o">.</span><span class="n">Sprite</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Classe das caixas</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        pygame (pygame.sprite.Sprite): Sprites do jogo</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        bool: caixa movida/caixa em posição-alvo</span>
+<span class="sd">    &quot;&quot;&quot;</span>    
+    <span class="n">objects</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Inicializa sprite da caixa.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            position (tuple[int,int]): posição inicial da caixa.</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">position</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sprites</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;images</span><span class="se">\\</span><span class="s1">box.gif&#39;</span><span class="p">,</span> <span class="s1">&#39;images</span><span class="se">\\</span><span class="s1">box_port.gif&#39;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sprites</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">image</span><span class="p">),</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sprites</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rect</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">get_rect</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">topleft</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_change</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">y_change</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">wall_pos</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Realiza os movimentos da caixa. É chamado apenas quando o robô se move na direção de uma caixa.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            x_change (int): parâmetro que define se a caixa vai se mover ao longo do eixo horizontal e em que sentido ele fará isso (0 = não se move, 1 = move uma casa para a direita, -1 = move uma casa para a esquerda)</span>
+<span class="sd">            y_change (int): parâmetro que define se a caixa vai se mover ao longo do eixo vertical e em que sentido ele fará isso (0 = não se move, 1 = move uma casa para baixo, -1 = move uma casa para cima)</span>
+<span class="sd">            wall_pos (list[tuple[int,int]]): lista de posições de sprites de muro na fase.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: booleano que informa se a caixa se moveu. É falso no caso em que a posição de destino da caixa é uma parede ou outra caixa. </span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">topleft</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> 
+        <span class="n">object_aux</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">object_aux</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">new_pos</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">30</span><span class="o">*</span><span class="n">x_change</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">30</span><span class="o">*</span><span class="n">y_change</span><span class="p">)</span>
+        <span class="n">box_pos</span> <span class="o">=</span> <span class="p">[</span><span class="n">box</span><span class="o">.</span><span class="n">position</span> <span class="k">for</span> <span class="n">box</span> <span class="ow">in</span> <span class="n">Box</span><span class="o">.</span><span class="n">objects</span><span class="p">]</span>
+
+        <span class="c1">#Verifica se o destino da caixa está ocupado</span>
+        <span class="k">if</span> <span class="n">new_pos</span> <span class="ow">in</span> <span class="n">wall_pos</span> <span class="ow">or</span> <span class="n">new_pos</span> <span class="ow">in</span> <span class="n">box_pos</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        
+        <span class="c1">#Atualiza a posição da caixa</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">new_pos</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">topleft</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">in_goal</span>
+        <span class="n">pygame</span><span class="o">.</span><span class="n">mixer</span><span class="o">.</span><span class="n">Sound</span><span class="p">(</span><span class="s1">&#39;sounds</span><span class="se">\\</span><span class="s1">box_move.wav&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">play</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">in_goal</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Informa se a caixa encontra-se em uma posição-alvo e, caso esteja, troca sua imagem.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: informa se a caixa encontra-se em uma posição-alvo (True caso afirmativo)</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        <span class="n">goal_pos</span> <span class="o">=</span> <span class="p">[</span><span class="n">goal</span><span class="o">.</span><span class="n">position</span> <span class="k">for</span> <span class="n">goal</span> <span class="ow">in</span> <span class="n">Goal</span><span class="o">.</span><span class="n">objects</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="ow">in</span> <span class="n">goal_pos</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sprites</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sprites</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="kc">False</span>
+        
+
+<span class="k">class</span> <span class="nc">Wall</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">sprite</span><span class="o">.</span><span class="n">Sprite</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Classe dos muros (paredes)</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        pygame (pygame.sprite.Sprite): Sprite da classe</span>
+<span class="sd">    &quot;&quot;&quot;</span>    
+    <span class="n">objects</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Inicializa objeto do tipo Wall.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            position (tuple[int,int]): posição da parede na fase.</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">position</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="s1">&#39;images</span><span class="se">\\</span><span class="s1">brick.gif&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">image</span><span class="p">),</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rect</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">get_rect</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">topleft</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Goal</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">sprite</span><span class="o">.</span><span class="n">Sprite</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Classe das posições-alvo (locais onde as caixas devem ser colocadas)</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        pygame (pygame.sprite.Sprite): Sprite da classe</span>
+<span class="sd">    &quot;&quot;&quot;</span>    
+    <span class="n">objects</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Inicializa objeto do tipo Goal.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            position (tuple[int,int]): posição do objetivo na fase.</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">position</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="s1">&#39;images</span><span class="se">\\</span><span class="s1">port.gif&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">image</span><span class="p">),</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rect</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">get_rect</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">topleft</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Floor</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">sprite</span><span class="o">.</span><span class="n">Sprite</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Classe do piso (chão)</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        pygame (pygame.sprite.Sprite): Sprite de classe</span>
+<span class="sd">    &quot;&quot;&quot;</span>    
+    <span class="n">objects</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Inicializa objeto do tipo Floor.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            position (tuple[int,int]): posição do piso na fase.</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">position</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="s1">&#39;images</span><span class="se">\\</span><span class="s1">floor.gif&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">image</span><span class="p">),</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rect</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">get_rect</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">topleft</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">Robox Forever</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navegação</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Busca rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Ir" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Cleyton Santos, Jean Horn, João Fernandes, Thiago Poganski, Pablo Barros.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.3.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
