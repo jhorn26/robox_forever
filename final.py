@@ -153,6 +153,7 @@ class Level():
                         self.create_level()
                         self.run_level(window, background, screen)
                         self.level_running = False
+                        return "SELECT"
 
                 if all([box.in_goal for box in Box.objects]):
                     self.level_running = False
