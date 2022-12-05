@@ -7,7 +7,8 @@ class Game:
     """Roda o jogo e manipula as demais classes.
     """    
     def __init__(self, size:tuple[int,int]) -> None:  
-        """Inicializa a classe Game.
+        """
+        :Inicializa a classe Game:
 
         Args:
             size (tuple[int,int]): dimensões da janela do jogo.
@@ -163,6 +164,8 @@ class Level():
 
 
 class Screen():
+    """Classe das telas exibidas durante o jogo (tela da fase, tela inicial, tela de vitória)
+    """    
     def __init__(self, window:pygame.Surface) -> None:
         """Inicializa objeto da classe Screen.
 
@@ -250,6 +253,11 @@ class Screen():
 
 
 class Button:
+    """Classe dos botões
+
+    Returns:
+        int: número da fase selecionada
+    """    
     objects = []
     def __init__(self) -> None:
         """Inicializa objeto da classe Button
@@ -264,14 +272,14 @@ class Button:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.run = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    self.run = False
             if event.type == pygame.MOUSEBUTTONUP:
                 mouse_position = pygame.mouse.get_pos() 
                 for button in self.__class__.objects:
                     if button.collidepoint(mouse_position):
                         return self.__class__.objects.index(button)
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_q:
-                    self.run = False
     
 
 def convert_coordinates(position:tuple[int,int], x:int, y:int) -> tuple[int,int]:

@@ -2,6 +2,11 @@ import pygame
 
 
 class Robot(pygame.sprite.Sprite):    
+    """Classe do robô (jogador)
+
+    Args:
+        pygame (_type_): _description_
+    """    
     def __init__(self, position:tuple[int,int]) -> None:  
         """Inicializa sprite do robô.
 
@@ -71,6 +76,14 @@ class Robot(pygame.sprite.Sprite):
 
 
 class Box(pygame.sprite.Sprite):
+    """Classe das caixas
+
+    Args:
+        pygame (pygame.sprite.Sprite): Sprites do jogo
+
+    Returns:
+        bool: caixa movida/caixa em posição-alvo
+    """    
     objects = []
     def __init__(self, position:tuple[int,int]) -> None:
         """Inicializa sprite da caixa.
@@ -133,6 +146,11 @@ class Box(pygame.sprite.Sprite):
         
 
 class Wall(pygame.sprite.Sprite):
+    """Classe dos muros (paredes)
+
+    Args:
+        pygame (pygame.sprite.Sprite): Sprite da classe
+    """    
     objects = []
     def __init__(self, position:tuple[int,int]) -> None:
         """Inicializa objeto do tipo Wall.
@@ -150,6 +168,11 @@ class Wall(pygame.sprite.Sprite):
 
 
 class Goal(pygame.sprite.Sprite):
+    """Classe das posições-alvo (locais onde as caixas devem ser colocadas)
+
+    Args:
+        pygame (pygame.sprite.Sprite): Sprite da classe
+    """    
     objects = []
     def __init__(self, position:tuple[int,int]) -> None:
         """Inicializa objeto do tipo Goal.
@@ -167,6 +190,11 @@ class Goal(pygame.sprite.Sprite):
 
 
 class Floor(pygame.sprite.Sprite):
+    """Classe do piso (chão)
+
+    Args:
+        pygame (pygame.sprite.Sprite): Sprite de classe
+    """    
     objects = []
     def __init__(self, position:tuple[int,int]) -> None:
         """Inicializa objeto do tipo Floor.
