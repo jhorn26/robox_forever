@@ -93,7 +93,9 @@ def exec_game(player_position, goal_positions, boxes_positions, walls_positions,
             update_version(list_versions, player, top_left_x, top_left_y)
             movimentos_aux += 1
 
-
+        window.blit(background, (0, 0))
+        rect_esc = button_esc(window)
+        rect_restart = button_restart(window)
         
         moving_sprites.draw(window)
 
@@ -103,7 +105,7 @@ def exec_game(player_position, goal_positions, boxes_positions, walls_positions,
         diff = [x for x in box_pos if x not in goal_pos]
         if diff == []:
             run = False
-            pygame.mixer.Sound('./sounds/somdevitoria.wav').play()
+            pygame.mixer.Sound('./sounds/som_de_vitoria.wav').play()
 
         #Contagem do tempo e movimentos
         time_and_movement_and_title(movimentos, start_time, top_left_y, window, title)
@@ -172,7 +174,7 @@ def main():
            window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 - 50))
 
            font = pygame.font.Font(fonte_geral, 20)
-           label = font.render('Press SPACE to continue', True, (15, 15, 0))
+           label = font.render('Press SPACE to continue', True, (150, 150, 0))
            window.blit(label, (S_WIDTH / 2 - (label.get_width() / 2), S_HEIGHT / 2 + 50))
 
         elif color == (0, 0, 160):
@@ -244,7 +246,7 @@ def main():
         pygame.display.update()
 
 
-background_music = pygame.mixer.Sound('./sounds/somdefundo.wav')
+background_music = pygame.mixer.Sound('./sounds/som_de_fundo.wav')
 background_music.play(-1)
 window = pygame.display.set_mode((S_WIDTH, S_HEIGHT))
 pygame.display.set_caption("Sokoban")
